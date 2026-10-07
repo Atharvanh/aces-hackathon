@@ -323,7 +323,7 @@ function openProblems() {
   guide.hidden = true;
   psPage.hidden = false;
   activeProblem = 0;
-  psCards.forEach((card, index) => card.setAttribute('aria-pressed', String(index === 0)));
+  psCards.forEach(card => card.setAttribute('aria-pressed', 'false'));
   psPage.querySelector('.ps-scroll').scrollTop = 0;
   psPage.querySelector('.ps-close').focus({ preventScroll: true });
   syncMusicState();

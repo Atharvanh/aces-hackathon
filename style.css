@@ -102,3 +102,11 @@ h2{font-size:clamp(24px,min(5.5vw,9vh),88px);margin:clamp(8px,2.5vh,28px) 0;line
 .menu-button.selected,.menu-button.selected:hover{border-color:#fff;color:#173f50;box-shadow:inset 0 0 0 3px #fff,0 0 10px #e6fff580,0 2px #152b26;filter:brightness(1.1)}
 .ps-card[aria-pressed="true"],.ps-card[aria-pressed="true"]:hover{border-color:#fff;box-shadow:0 0 0 2px #244c45,0 0 16px #e6fff580}
 .screen button:focus-visible,.screen a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+.orientation-notice{display:none;position:fixed;inset:0;z-index:1000;min-height:100dvh;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:32px 24px;background:radial-gradient(ellipse at 50% 35%,#254b49,#10191f 65%);color:#f3fff9}
+.rotate-phone{width:120px;height:120px;fill:none;stroke:#98f1de;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:20px}
+.orientation-notice .rotate-brand{font:600 12px/1.5 'DM Sans',sans-serif;letter-spacing:4px;color:#96dccc;margin:0 0 18px}
+.orientation-notice h1{font:400 clamp(36px,9vw,56px)/1.15 Joffrey,sans-serif;letter-spacing:1px;margin:0 0 16px;max-width:380px}
+.orientation-notice p{font:400 16px/1.6 'DM Sans',sans-serif;max-width:300px;margin:0 0 16px}
+.orientation-notice span{font:400 12px/1.6 'DM Sans',sans-serif;color:#9eafaf;max-width:280px}
+@media(orientation:portrait){body>main{display:none!important}.orientation-notice{display:flex}}
