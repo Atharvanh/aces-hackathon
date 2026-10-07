@@ -459,7 +459,9 @@ function action(name) {
 
 buttons.forEach((button, i) => button.addEventListener('click', () => choose(i, true)));
 document.querySelectorAll('[data-action]').forEach(button => button.addEventListener('click', () => action(button.dataset.action)));
-document.querySelectorAll('[data-social]').forEach(button => button.addEventListener('click', () => showNotice(button.dataset.social + ' — club link coming soon.')));
+document.querySelectorAll('[data-social][data-url]').forEach(button => button.addEventListener('click', () => {
+  window.open(button.dataset.url, '_blank', 'noopener,noreferrer');
+}));
 
 document.addEventListener('keydown', event => {
   if (event.altKey || event.ctrlKey || event.metaKey) return;
