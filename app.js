@@ -40,6 +40,29 @@ let fadeTimer = null;
 let duckTimer = null;
 let lastHover = -Infinity;
 let keyboardNavigation = false;
+let isMuted = false;
+
+function updateMuteUI() {
+  const muteBtn = document.getElementById('mute-button');
+  if (!muteBtn) return;
+  muteBtn.classList.toggle('is-muted', isMuted);
+  muteBtn.setAttribute('aria-pressed', String(isMuted));
+  muteBtn.setAttribute('aria-label', isMuted ? 'Unmute all audio' : 'Mute all audio');
+  muteBtn.setAttribute('title', isMuted ? 'Unmute Audio (M)' : 'Mute Audio (M)');
+}
+
+function toggleMute() {
+  isMuted = !isMuted;
+  updateMuteUI();
+  if (isMuted) {
+    fadeMusic(0, 180, () => {
+      try { bgMusic.pause(); } catch (_) {}
+    });
+  } else {
+    syncMusicState();
+    triggerSelect();
+  }
+}
 
 function isSiteActive() {
   return (
@@ -77,7 +100,7 @@ function fadeMusic(targetVol, duration = 300, onComplete) {
 }
 
 function playBgMusic() {
-  if (!isSiteActive()) return;
+  if (isMuted || !isSiteActive()) return;
   if (bgMusic.paused) {
     bgMusic.volume = 0;
     const playPromise = bgMusic.play();
@@ -95,14 +118,14 @@ function playBgMusic() {
 
 function pauseBgMusic() {
   fadeMusic(0, 250, () => {
-    if (!isSiteActive()) {
+    if (isMuted || !isSiteActive()) {
       try { bgMusic.pause(); } catch (_) {}
     }
   });
 }
 
 function syncMusicState() {
-  if (isSiteActive()) {
+  if (!isMuted && isSiteActive()) {
     playBgMusic();
   } else {
     pauseBgMusic();
@@ -110,7 +133,7 @@ function syncMusicState() {
 }
 
 function duckMusic() {
-  if (bgMusic.paused || !isSiteActive()) return;
+  if (isMuted || bgMusic.paused || !isSiteActive()) return;
   if (duckTimer) clearTimeout(duckTimer);
   if (fadeTimer) {
     clearInterval(fadeTimer);
@@ -119,13 +142,14 @@ function duckMusic() {
   bgMusic.volume = BG_DUCK_VOLUME;
   duckTimer = setTimeout(() => {
     duckTimer = null;
-    if (isSiteActive() && !bgMusic.paused) {
+    if (!isMuted && isSiteActive() && !bgMusic.paused) {
       fadeMusic(BG_VOLUME, 250);
     }
   }, 220);
 }
 
 function playSfx(audio) {
+  if (isMuted) return;
   try {
     audio.pause();
     audio.currentTime = 0;
@@ -160,7 +184,7 @@ function unlockAudio() {
   ['pointerdown', 'keydown', 'click', 'touchstart'].forEach(type => {
     window.removeEventListener(type, unlockAudio, true);
   });
-  if (isSiteActive()) {
+  if (!isMuted && isSiteActive()) {
     playBgMusic();
   }
 }
@@ -340,7 +364,7 @@ function action(name) {
   }
   if (name === 'register') window.open('https://campusmeet.in/user/user_event-details.php?id=175', '_blank', 'noopener,noreferrer');
   if (name === 'credits') openCredits();
-  if (name === 'animation') { document.querySelector('.space-animation').classList.toggle('animation-hidden'); }
+  if (name === 'mute' || name === 'animation') { toggleMute(); return; }
 }
 
 buttons.forEach((button, i) => button.addEventListener('click', () => choose(i, true)));
@@ -349,6 +373,11 @@ document.querySelectorAll('[data-social]').forEach(button => button.addEventList
 
 document.addEventListener('keydown', event => {
   if (event.altKey || event.ctrlKey || event.metaKey) return;
+  if ((event.key === 'm' || event.key === 'M') && !event.target.closest('input,textarea')) {
+    event.preventDefault();
+    toggleMute();
+    return;
+  }
   if (!faqOverlay.hidden) {
     if (event.key === 'Escape' || event.key === 'Home') {
       event.preventDefault();
@@ -413,5 +442,6 @@ document.addEventListener('keydown', event => {
   if (event.repeat || event.target.closest('.controller')) return;
 }, true);
 
-// Initialize home background music
+// Initialize background music and mute button UI
+updateMuteUI();
 syncMusicState();
