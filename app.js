@@ -322,6 +322,8 @@ function openProblems() {
   notice.hidden = true;
   guide.hidden = true;
   psPage.hidden = false;
+  activeProblem = 0;
+  psCards.forEach((card, index) => card.setAttribute('aria-pressed', String(index === 0)));
   psPage.querySelector('.ps-scroll').scrollTop = 0;
   psPage.querySelector('.ps-close').focus({ preventScroll: true });
   syncMusicState();
@@ -351,7 +353,7 @@ function startCreditsRoll() {
   const distance = Math.max(0, roll.scrollHeight - height);
   creditsAnimation = roll.animate(
     [{ transform: 'translateY(0)' }, { transform: 'translateY(-' + distance + 'px)' }],
-    { delay: 2500, duration: (distance / 32) * 1000, easing: 'linear', fill: 'forwards' }
+    { delay: 0, duration: (distance / 32) * 1000, easing: 'linear', fill: 'forwards' }
   );
   creditsAnimation.onfinish = () => {
     playback.textContent = 'Replay';
@@ -420,6 +422,13 @@ function action(name) {
   if (name === 'close-credits') { closeCredits(); choose(0); buttons[0].focus({ preventScroll: true }); return; }
   if (name === 'credits-playback') { creditsPlayback(); return; }
   if (!creditsPanel.hidden && (name === 'home' || name === 'back')) { closeCredits(); choose(0); return; }
+  if (!creditsPanel.hidden && (name === 'next' || name === 'prev')) {
+    if (creditsAnimation) {
+      const duration = creditsAnimation.effect.getTiming().duration;
+      creditsAnimation.currentTime = Math.max(0, Math.min(duration, Number(creditsAnimation.currentTime) + (name === 'next' ? 3000 : -3000)));
+    } else creditsPanel.querySelector('.credits-viewport').scrollBy({ top: name === 'next' ? 150 : -150, behavior: 'smooth' });
+    return;
+  }
   if (name === 'close-faq') { closeFaqs(); return; }
   if (!faqOverlay.hidden) {
     if (name === 'home' || name === 'back') closeFaqs();
@@ -428,10 +437,12 @@ function action(name) {
   }
   if (name === 'close-ps') { closeProblems(); return; }
   if (!psPage.hidden && (name === 'home' || name === 'back')) { closeProblems(); return; }
+  if (!psPage.hidden && name === 'select') { openProblemDetail(activeProblem); return; }
   if (!psPage.hidden && (name === 'next' || name === 'prev')) {
-    const current = psCards.findIndex(card => card === document.activeElement);
-    const next = (current + (name === 'next' ? 1 : -1) + psCards.length) % psCards.length;
-    psCards[next].focus();
+    activeProblem = (activeProblem + (name === 'next' ? 1 : -1) + psCards.length) % psCards.length;
+    psCards.forEach((card, index) => card.setAttribute('aria-pressed', String(index === activeProblem)));
+    psCards[activeProblem].focus({ preventScroll: true });
+    psCards[activeProblem].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     return;
   }
   if (name === 'sleep' || name === 'quit') {
@@ -443,9 +454,9 @@ function action(name) {
     screen.classList.remove('sleeping');
     syncMusicState();
   }
-  if (name === 'prev') { choose(selected - 1); triggerHover(); }
-  if (name === 'next') { choose(selected + 1); triggerHover(); }
-  if (name === 'select') { choose(selected, true); triggerSelect(); }
+  if (name === 'prev') { choose(selected - 1); buttons[selected].focus({ preventScroll: true }); }
+  if (name === 'next') { choose(selected + 1); buttons[selected].focus({ preventScroll: true }); }
+  if (name === 'select') { choose(selected, true); }
   if (name === 'home' || name === 'back') { choose(0); guide.hidden = true; syncMusicState(); }
   if (name === 'dismiss') notice.hidden = true;
   if (name === 'help') {
