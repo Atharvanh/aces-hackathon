@@ -97,3 +97,8 @@ h2{font-size:clamp(24px,min(5.5vw,9vh),88px);margin:clamp(8px,2.5vh,28px) 0;line
 .problem-character img{display:block;width:100%;max-height:70%;object-fit:contain;filter:drop-shadow(0 14px 16px #0007)}
 .problem-character span{font:400 clamp(23px,3vh,38px)/1.2 Joffrey,sans-serif;letter-spacing:1px;color:#c9ded6;margin-top:12px}
 @media(max-width:560px){.problem-detail-body{grid-template-columns:minmax(0,1fr) minmax(55px,.32fr);gap:8px;padding:12px 9px 18px}.problem-copy-column h2{font-size:25px}.problem-description{padding:15px 12px;border-width:6px;border-radius:23px;font-size:13px}.problem-description h3{font-size:27px}.problem-character span{font-size:17px;text-align:center}.problem-character img{width:135%;max-width:none}}
+
+/* Keep controller selection visible after focus moves to a console button. */
+.menu-button.selected,.menu-button.selected:hover{border-color:#fff;color:#173f50;box-shadow:inset 0 0 0 3px #fff,0 0 10px #e6fff580,0 2px #152b26;filter:brightness(1.1)}
+.ps-card[aria-pressed="true"],.ps-card[aria-pressed="true"]:hover{border-color:#fff;box-shadow:0 0 0 2px #244c45,0 0 16px #e6fff580}
+.screen button:focus-visible,.screen a:focus-visible{outline:3px solid #fff;outline-offset:3px}
