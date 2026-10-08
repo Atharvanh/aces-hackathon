@@ -11,6 +11,129 @@
 </head>
 
 <body>
+    <!-- Among Us Preloader: SHHH! Intro + Animated Loading Screen + Task Progress Bar -->
+    <div id="preloader-overlay" class="preloader-overlay" aria-label="Among Us Startup">
+      <!-- Dynamic Space Starfield & Cosmic Dust -->
+      <div class="preloader-space-bg" aria-hidden="true">
+        <div class="space-nebula"></div>
+        <div class="preloader-stars-layer layer-1"></div>
+        <div class="preloader-stars-layer layer-2"></div>
+        <div class="preloader-stars-layer layer-3"></div>
+      </div>
+
+      <!-- Stage 1: The Iconic "SHHH!" Sequence -->
+      <div id="stage-shhh" class="stage-shhh is-active">
+        <div class="shhh-box">
+          <!-- High Quality Among Us SHHH video with audio -->
+          <video
+            id="shhh-video"
+            class="shhh-video"
+            src="assets/among_us_shhh.mp4"
+            playsinline
+            webkit-playsinline
+            muted
+            preload="auto"
+          ></video>
+          <!-- Layered Visual fallback / booster -->
+          <div class="shhh-graphic-fallback" id="shhh-graphic-fallback">
+            <div class="shhh-sunburst">
+              <img src="assets/shh_sunburst.png" alt="" draggable="false" />
+            </div>
+            <div class="shhh-character-wrap">
+              <img class="shhh-crew" src="assets/shh_crewmate.png" alt="Red Crewmate" draggable="false" />
+              <img class="shhh-hand" src="assets/shh_hand.png" alt="Crewmate Shushing Finger" draggable="false" />
+            </div>
+            <div class="shhh-text-wrap">
+              <img class="shhh-text-img" src="assets/shh_text.png" alt="SHHHHHHH!" draggable="false" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 2: Among Us Space Loading Screen & Task Bar -->
+      <div id="stage-loading" class="stage-loading">
+        <!-- Floating Drifting Crewmates across Deep Space -->
+        <div class="floating-crew-constellation" aria-hidden="true">
+          <div class="drifter drifter-cyan">
+            <img src="assets/crew_float_cyan.png" alt="" draggable="false" />
+          </div>
+          <div class="drifter drifter-lime">
+            <img src="assets/crew_float_lime.png" alt="" draggable="false" />
+          </div>
+          <div class="drifter drifter-yellow">
+            <img src="assets/crew_float_yellow.png" alt="" draggable="false" />
+          </div>
+          <div class="drifter drifter-pink">
+            <img src="assets/crew_float_pink.png" alt="" draggable="false" />
+          </div>
+          <div class="drifter drifter-orange">
+            <img src="assets/crew_float_orange.png" alt="" draggable="false" />
+          </div>
+        </div>
+
+        <!-- Centered Loading Console Panel -->
+        <div class="loading-console-panel">
+          <!-- Top Title Branding -->
+          <div class="loading-brand-header">
+            <img class="among-us-logo-img" src="assets/among_us_logo.svg" alt="Among Us" draggable="false" />
+            <div class="loading-subheading">
+              <span class="subhead-pill">THE SKELD TERMINAL</span>
+              <span class="subhead-status"><i class="status-pulse"></i> CONNECTING</span>
+            </div>
+          </div>
+
+          <!-- Among Us Task Progress Bar -->
+          <div class="task-bar-module">
+            <div class="task-bar-meta">
+              <div class="task-meta-left">
+                <span class="task-icon">📋</span>
+                <span class="task-bar-title">TOTAL TASKS COMPLETED</span>
+              </div>
+              <div class="task-meta-right">
+                <span id="task-percentage" class="task-percentage">0%</span>
+              </div>
+            </div>
+
+            <div class="task-bar-track">
+              <!-- The segmented green progress fill -->
+              <div id="task-bar-fill" class="task-bar-fill" style="width: 0%;">
+                <div class="task-bar-glow"></div>
+                <!-- Mini Cyan Crewmate running on top of progress bar! -->
+                <div class="task-bar-crewmate">
+                  <img src="assets/crew_mini_cyan.png" alt="Running Crewmate" draggable="false" />
+                </div>
+              </div>
+              <!-- Segment dividers like in the game -->
+              <div class="task-bar-segments" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+
+            <!-- Terminal Status Logs -->
+            <div class="task-status-log">
+              <span class="log-cursor">❯</span>
+              <span id="task-status-text" class="task-status-text">INITIALIZING SKELD REACTOR CORE...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRT Flash Bloom Effect on completion / transition -->
+      <div id="preloader-flash" class="preloader-flash" aria-hidden="true"></div>
+
+      <!-- Preloader Controls & Audio Prompt -->
+      <div class="preloader-hud">
+        <button id="preloader-skip" class="preloader-skip" type="button" aria-label="Skip Intro">
+          <span>SKIP INTRO</span>
+          <kbd>ESC</kbd>
+        </button>
+        <div id="preloader-audio-prompt" class="preloader-audio-prompt" aria-hidden="true">
+          <span class="audio-dot"></span>
+          <span class="audio-text">TAP FOR AUDIO 🔊</span>
+        </div>
+      </div>
+    </div>
+
     <section class="orientation-notice" role="status" aria-labelledby="rotate-title"><svg class="rotate-phone"
             viewBox="0 0 120 120" aria-hidden="true">
             <rect x="37" y="20" width="46" height="80" rx="9" />
@@ -24,7 +147,7 @@
     </section>
 
     <main>
-        <div class="console-wrap">
+        <div class="console-wrap booting">
             <div class="console" aria-label="Interactive handheld console">
                 <button class="shoulder left-shoulder" data-action="prev"
                     aria-label="Previous destination">L</button><button class="shoulder right-shoulder"
@@ -78,9 +201,15 @@
                                                 data-action="quit">Quit</button></div>
                                     </div>
                                 </section>
-                                <section class="space-frame" aria-label="Floating crewmates"><img
-                                        class="space-animation" src="assets/amongus2.gif"
+                                <section class="space-frame" id="space-frame" aria-label="Floating crewmates"><img
+                                        class="space-animation" id="space-animation" src="assets/amongus2.gif"
                                         alt="Colorful Among Us crewmates floating through space">
+                                    <video id="home-hackseries-video" class="home-hackseries-video" src="assets/ToFindYourDreamsComeTrue.mp4" playsinline webkit-playsinline preload="auto" hidden></video>
+                                    <button id="close-home-video" class="home-video-close" aria-label="Close video and return to idle animation" hidden title="Close Video (Esc)">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+                                            <path d="M18 6L6 18M6 6l12 12"/>
+                                        </svg>
+                                    </button>
                                     <section class="credits-panel" id="credits-panel" aria-label="ACES DIT credits"
                                         hidden><button class="credits-close ps-close" data-action="close-credits"
                                             aria-label="Close credits and return to Home"><svg viewBox="0 0 32 32"
