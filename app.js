@@ -455,7 +455,8 @@ function choose(index, activate = false) {
   if (activate && selected === 4) { openAbout(); return; }
   if (activate && selected === 3) { openFaqs(); return; }
   if (activate && selected === 2) { openPrizes(); return; }
-  if (activate && selected === 1) { openProblems(); return; }
+  // Keep the menu button visible while problem statements are unreleased.
+  if (activate && selected === 1) { syncMusicState(); return; }
   if (activate && selected !== 0) showNotice(buttons[selected].textContent + ' — page coming next.');
   syncMusicState();
 }
