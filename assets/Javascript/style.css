@@ -1,0 +1,35 @@
+* {
+    margin : 0%;
+    padding : 0%;
+}
+html, body,main {
+    height: 100%;
+    width: 100%;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.box {
+    height : 125px;
+    width: 125px;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#box2:hover {
+    background-color: red;
+}

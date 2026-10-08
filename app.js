@@ -94,6 +94,7 @@ function closeProblemDetail() {
   psCards[activeProblem].focus({preventScroll:true});
 }
 const faqOverlay = document.getElementById('faq-overlay');
+const aboutOverlay = document.getElementById('about-overlay');
 const creditsPanel = document.getElementById('credits-panel');
 let creditsAnimation = null;
 
@@ -296,6 +297,7 @@ function openFaqs() {
   notice.hidden = true;
   guide.hidden = true;
   psPage.hidden = true;
+  if (aboutOverlay) aboutOverlay.hidden = true;
   faqOverlay.hidden = false;
   setHomeInert(true);
   faqOverlay.querySelector('.faq-scroll').scrollTop = 0;
@@ -305,6 +307,26 @@ function openFaqs() {
 
 function closeFaqs() {
   faqOverlay.hidden = true;
+  setHomeInert(false);
+  choose(0);
+  buttons[0].focus({ preventScroll: true });
+  syncMusicState();
+}
+
+function openAbout() {
+  notice.hidden = true;
+  guide.hidden = true;
+  psPage.hidden = true;
+  faqOverlay.hidden = true;
+  aboutOverlay.hidden = false;
+  setHomeInert(true);
+  aboutOverlay.querySelector('.faq-scroll').scrollTop = 0;
+  aboutOverlay.querySelector('.faq-close').focus({ preventScroll: true });
+  syncMusicState();
+}
+
+function closeAbout() {
+  aboutOverlay.hidden = true;
   setHomeInert(false);
   choose(0);
   buttons[0].focus({ preventScroll: true });
@@ -321,6 +343,8 @@ function closeProblems() {
 function openProblems() {
   notice.hidden = true;
   guide.hidden = true;
+  if (aboutOverlay) aboutOverlay.hidden = true;
+  faqOverlay.hidden = true;
   psPage.hidden = false;
   activeProblem = 0;
   psCards.forEach(card => card.setAttribute('aria-pressed', 'false'));
@@ -363,6 +387,8 @@ function startCreditsRoll() {
 
 function openCredits() {
   notice.hidden = true;
+  if (aboutOverlay) aboutOverlay.hidden = true;
+  faqOverlay.hidden = true;
   creditsPanel.hidden = false;
   startCreditsRoll();
   creditsPanel.querySelector('.credits-close').focus({ preventScroll: true });
@@ -405,6 +431,7 @@ function choose(index, activate = false) {
     else button.removeAttribute('aria-current');
   });
   notice.hidden = true;
+  if (activate && selected === 4) { openAbout(); return; }
   if (activate && selected === 3) { openFaqs(); return; }
   if (activate && selected === 1) { openProblems(); return; }
   if (activate && selected !== 0) showNotice(buttons[selected].textContent + ' — page coming next.');
@@ -433,6 +460,12 @@ function action(name) {
   if (!faqOverlay.hidden) {
     if (name === 'home' || name === 'back') closeFaqs();
     else if (name === 'next' || name === 'prev') faqOverlay.querySelector('.faq-scroll').scrollBy({ top: name === 'next' ? 150 : -150, behavior: 'smooth' });
+    return;
+  }
+  if (name === 'close-about') { closeAbout(); return; }
+  if (aboutOverlay && !aboutOverlay.hidden) {
+    if (name === 'home' || name === 'back') closeAbout();
+    else if (name === 'next' || name === 'prev') aboutOverlay.querySelector('.faq-scroll').scrollBy({ top: name === 'next' ? 150 : -150, behavior: 'smooth' });
     return;
   }
   if (name === 'close-ps') { closeProblems(); return; }
@@ -502,6 +535,18 @@ document.addEventListener('keydown', event => {
       event.preventDefault();
       const close = faqOverlay.querySelector('.faq-close');
       const content = faqOverlay.querySelector('.faq-scroll');
+      (document.activeElement === close ? content : close).focus();
+    }
+    return;
+  }
+  if (aboutOverlay && !aboutOverlay.hidden) {
+    if (event.key === 'Escape' || event.key === 'Home') {
+      event.preventDefault();
+      closeAbout();
+    } else if (event.key === 'Tab') {
+      event.preventDefault();
+      const close = aboutOverlay.querySelector('.faq-close');
+      const content = aboutOverlay.querySelector('.faq-scroll');
       (document.activeElement === close ? content : close).focus();
     }
     return;

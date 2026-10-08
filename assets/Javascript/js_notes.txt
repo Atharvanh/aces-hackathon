@@ -1,0 +1,242 @@
+to comment use // (in line comment)
+multiline /* */
+console.log('"raj singh"')
+# no boiler plate code is needed
+; is optional but for good practices its used
+
+strings can be enclosed within either '' or ""
+javascript is case sensitive
+// data types and variables (7 data types in js)
+// undefined , null , Boolean, string, Symbol, number , and Object
+// declaration of a variable (3 methods) :-
+var my_name = "raj singh"; (can be used throughout the entire program)
+let name = "dy patil"; (is only used within the block where it is declared)
+const pi = 3.14;  (value never changes)  (if we try to change it we'll get an error)
+
+length of a string var.length;
+strings are immutable
+empty string ;   var var_name = "";
+
+var arr_name = [val1, val2]; 
+nested arrays var arr_name = [val1,[val2,val3], val4, [val5,val6]];
+to acess val2;   console.log(arr_name[1][0]);
+
+we can push data in an already existing array in the last by using the push function
+var arr = [10,[20,30],40,[50,60]];
+arr.push([70,80,"raj"]);
+console.log(arr[4][2]);   //raj
+
+var arr = [1,2,3,4,5];
+var del_arr = arr.pop();   //deletes the last element of the array
+for (var i=0; i<(arr.length); i++) {         // 1 2 3 4
+    console.log(arr[i]);
+}
+console.log(del_arr);  //5
+
+var arr = [1,2,3,4,5];
+var del_arr = arr.shift();   //deletes the first element of the array
+for (var i=0; i<(arr.length); i++) {        // 2 3 4 5
+    console.log(arr[i]);
+}
+console.log(del_arr);  //1 
+
+var arr = [1,2,3,4,5];
+arr.unshift(0);   //adds the element of the starting of the array
+for (var i=0; i<(arr.length); i++) {        // 0 1 2 3 4 5
+    console.log(arr[i]);
+}
+
+function func_name(arg1, arg2) {
+    //task;
+}
+
+variables defined outside the function block are global variables
+when an variable is declared inside an function without using the 'var' keyword it becomes global by default
+but only if it actually runs
+ex. 
+function c() {
+    d = 3;
+}
+console.log(d);  //error as the function is never called so the d variable remained undefined
+function c() {
+    d = 3;
+}
+c();
+console.log(d); //valid //3
+
+ex. var1 = 10; (global variable)
+when an variable is printed which doesnt have any of its own value it prints undefined
+var a;
+console.log(a);  //undefined
+
+a variable defined using the var keyword has its scope only upto that function and can't be used outside
+the particular function
+
+global vs local scope in functions
+when the local and the global variable has the same name then the precedence of (local>global)
+for ex.
+var outerwear = "T-shirt";
+function myOutfit() {
+    var outerwear = "Hoodie";
+    console.log(outerwear);
+}
+myOutfit();     //Hoodie
+
+if (condition) {
+    //code
+}
+else if (condition) {
+    //code
+} 
+else {
+    //code
+}
+== (data type doesnt matter) (for ex. 18=='18') is valid (true)
+=== (strictly equality operator) (for ex. 18==='18') is invalid (false)
+!== (strictly inequality operator) 
+&& (logical AND operator)
+|| (logical OR operator)
+
+switch statements
+var n = 2;
+switch(n) {
+    case 1:
+        console.log("entered 1st case");
+        break;
+    default:
+        console.log("entered default"); 
+}
+
+javascript objects (dictionaries)
+var obj_name = {
+    property : value,
+    property : value,
+}; 
+value can be anything string , numbers, arrays , etc.
+to acess :-   console.log(obj_name[property]);
+another method :- console.log(obj_name.property);
+to create a new object :-     object_name[property] : value;
+
+delete properties from an object :- delete object_name[property];
+
+#checking if our object has an particular property
+by using the function hasOwnProperty
+object_name.hasOwnProperty(property)  //returns true / false
+function testprop(property) {
+    if (testObj.hasOwnProperty(property)) {
+        return testObj[property];
+    }
+    else {
+        return "not found";
+    }
+}
+console.log(testprop(4));
+
+acessing of nested objects
+console.log(my_storage["car"]["outside"]["tree"]);
+
+Generate random fractions
+Math.random;
+function random_float() {
+    return Math.random();
+}
+console.log(random_float());
+
+Math.floor()  converts the number to its closest whole number
+function random_whole() {
+    return Math.floor(Math.random() *100);
+}
+console.log(random_whole());
+
+//generating random whole numbers within a particular range
+function random_whole(min,max) {
+    return Math.floor(Math.random() *(max-min+1) + min);
+}
+console.log(random_whole(1,100));
+
+parseint function
+to convert into int datatype parseint(value)
+typeof() //to find the datatype
+(3<4) ? console.log("true"): console.log("false");
+(num>0)? console.log("positive") :num===0? console.log("equal to zero" ) : console.log("negative");
+
+let keyword doesnt allows you to use the same var_name twice (throws error);
+while var when used twice with the same var_name it returns the last value of the variable
+(therefore using let is considered better than using var)
+
+scope of the var and let keywords
+let keyword is only valid in the block in which it is declared
+var keyword is valid in the entire function block in which it is declared
+use const keyword when we you want a variable which doesnt changes it value at any case
+(most of the times use either let or const minimize the use of var as much possible)
+
+mutate an array declared with const
+you cant directly change an array when it is declared by using the const keyword
+but you can change the element of array by indexing
+
+prevent object mutation
+as an object or an array can still be mutated even after using the keyword const 
+to prevent an object from mutation use object.freeze(name_of_the_object_to_be_protected);
+
+const MATH_CONSTANT = {
+    "pi" : 3.14,
+    "name" : "raj"
+}
+Object.freeze(MATH_CONSTANT);
+try {
+    MATH_CONSTANT["pi"] = 7;
+}
+catch (ex) {
+    console.log("error");
+}
+console.log(MATH_CONSTANT["pi"]);
+
+// try and catch block //tries what is in the first part of the block and if there is any error executes the
+catch block
+try {
+    //code
+}
+catch ( ex ) {
+    //code
+}
+
+//use the spread operator to evaluate arrays in-place
+in javascript arrays are passed by reference
+so :- arr2 = arr1  (means both the arrays points to the same memory location any changes in one of them will
+cause change in the other as well)
+
+arr2 = [...arr1];  now we are not pointing to the memory address just the content of arr1 is copied in arr2
+
+// use destructuring assignment to assign variables from objects
+var voxel = {
+    x : 3.6,
+    y : 1.8,
+    z : 5.2,
+    name : "raj"
+}
+const {x : a, y:b, z:c,name: d} = voxel;
+console.log(d);
+//copy the value of x into a 
+
+//destructuring assignment with nested objects
+var my_obj = {
+    "name" : {
+        "first_name" : "raj",
+        "middle_name" : "jitendra",
+        "surname" : "singh",
+    },
+    "div" : "R",
+}
+const {"name" :{"surname" : a}} = my_obj;
+console.log(a);
+
+//create strings using template iterals
+const my_obj = {
+    "name" : "raj",
+    "roll no" : "FR50",
+}
+var age = 18;
+console.log(`my name is ${my_obj["name"]} I am ${age} years old and my roll no is : ${my_obj["roll no"]}`)
+
+//write concise object literal declarations using simple fields
+  
