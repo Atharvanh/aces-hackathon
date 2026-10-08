@@ -9,6 +9,7 @@ const buttons = [...document.querySelectorAll('[data-page]')];
 let selected = 0;
 
 const psPage = document.getElementById('ps-page');
+const prizePage = document.getElementById('prize-page');
 const psCards = [...document.querySelectorAll('[data-problem]')];
 const problemDetail = document.getElementById('problem-detail');
 const sampleProblems = [
@@ -305,6 +306,26 @@ function openFaqs() {
   syncMusicState();
 }
 
+function openPrizes() {
+  notice.hidden = true;
+  guide.hidden = true;
+  psPage.hidden = true;
+  faqOverlay.hidden = true;
+  if (aboutOverlay) aboutOverlay.hidden = true;
+  prizePage.hidden = false;
+  setHomeInert(true);
+  prizePage.querySelector('.prize-close').focus({ preventScroll: true });
+  syncMusicState();
+}
+
+function closePrizes() {
+  prizePage.hidden = true;
+  setHomeInert(false);
+  choose(0);
+  buttons[2].focus({ preventScroll: true });
+  syncMusicState();
+}
+
 function closeFaqs() {
   faqOverlay.hidden = true;
   setHomeInert(false);
@@ -433,12 +454,18 @@ function choose(index, activate = false) {
   notice.hidden = true;
   if (activate && selected === 4) { openAbout(); return; }
   if (activate && selected === 3) { openFaqs(); return; }
+  if (activate && selected === 2) { openPrizes(); return; }
   if (activate && selected === 1) { openProblems(); return; }
   if (activate && selected !== 0) showNotice(buttons[selected].textContent + ' — page coming next.');
   syncMusicState();
 }
 
 function action(name) {
+  if (name === 'close-prize') { closePrizes(); return; }
+  if (!prizePage.hidden && !['mute', 'sleep', 'quit'].includes(name)) {
+    if (name === 'home' || name === 'back') closePrizes();
+    return;
+  }
   if (name === 'close-detail') { closeProblemDetail(); return; }
   if (!problemDetail.hidden) {
     if (name === 'back') closeProblemDetail();

@@ -117,3 +117,21 @@ h2{font-size:clamp(24px,min(5.5vw,9vh),88px);margin:clamp(8px,2.5vh,28px) 0;line
 .orientation-notice p{font:400 16px/1.6 'DM Sans',sans-serif;max-width:300px;margin:0 0 16px}
 .orientation-notice span{font:400 12px/1.6 'DM Sans',sans-serif;color:#9eafaf;max-width:280px}
 @media(orientation:portrait){body>main{display:none!important}.orientation-notice{display:flex}}
+
+/* Prize vault uses the supplied room artwork inside the console. */
+.prize-page{position:absolute;inset:0;z-index:5;isolation:isolate;overflow:hidden;background:#223438 url('./assets/prize-room.jpg') center/100% 100% no-repeat;color:#fff6d9;container-type:size}
+.prize-page[hidden]{display:none}
+.prize-page:before{content:'';position:absolute;inset:13% 5% 5%;z-index:-1;background:radial-gradient(ellipse at center,#07151ee6 0%,#09151da6 40%,transparent 73%);pointer-events:none}
+.prize-close{position:absolute;left:3.65%;top:3.95%;width:5.3%;height:8%;padding:0;border:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f5f7f3,#b5bebc);box-shadow:0 0 0 2px #2b3334,inset 0 0 0 3px #cbd0cc;display:grid;place-items:center;color:#171e20;z-index:2}
+.prize-close svg{width:77%;height:77%;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round}
+.prize-close:hover{filter:brightness(1.2)}
+.prize-content{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:13% 8% 5%;text-align:center;text-shadow:0 3px 7px #000}
+.prize-eyebrow{font:600 clamp(7px,1.25cqh,12px)/1.3 'DM Sans',sans-serif;letter-spacing:.3em;color:#d3e5e4;margin:0 0 1.5cqh}
+.prize-content h2{font:400 clamp(25px,7cqh,72px)/1 Joffrey,sans-serif;letter-spacing:.1em;margin:0;color:#fff3cd}
+.prize-trophy{height:34cqh;flex-shrink:0;margin:0 0 .5cqh;filter:drop-shadow(0 0 24px #ffbe333d)}
+.prize-trophy svg{display:block;height:100%;width:auto}
+.prize-amount{font:800 clamp(36px,11cqh,112px)/1 'Space Grotesk',sans-serif;letter-spacing:-.045em;color:#ffdc75;margin:0;text-shadow:0 4px 0 #674820,0 6px 20px #0009}
+.prize-amount span{font-size:.65em;vertical-align:.09em;margin-right:.1em}
+.prize-label{font:700 clamp(8px,1.7cqh,17px)/1.4 'DM Sans',sans-serif;letter-spacing:.38em;margin:1.7cqh 0 0;color:#ffe9ad}
+.prize-tagline{font:400 clamp(8px,1.8cqh,16px)/1.5 'DM Sans',sans-serif;color:#d5e3e4;margin:2.5cqh 0 0}
+@media(max-height:450px){.prize-content{padding-top:10%}.prize-eyebrow{letter-spacing:.18em}.prize-tagline{margin-top:1.5cqh}}
