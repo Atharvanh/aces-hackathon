@@ -4,99 +4,25 @@
   aria-labelledby="prize-title"
   hidden
 >
+  <img
+    class="prize-banner-img"
+    src="assets/prize-pool.jpg"
+    alt="Hackathon 3.0 Rewards - Price Pool ₹13,000"
+  />
   <button
-    class="prize-close faq-close ps-close"
+    class="prize-close"
     data-action="close-prize"
     aria-label="Close Prize Pool and return to Home"
+    title="Close (Esc)"
   >
     <svg viewBox="0 0 32 32" aria-hidden="true">
       <path d="M8 8 24 24M24 8 8 24" />
     </svg>
   </button>
-  <div class="prize-content">
+  <div class="prize-content sr-only">
     <p class="prize-eyebrow">HACKATHON 3.0 · REWARDS</p>
-    <h2 id="prize-title">PRIZE POOL</h2>
-    <div class="prize-trophy" aria-hidden="true">
-      <svg viewBox="0 0 300 280" fill="none">
-        <defs>
-          <linearGradient
-            id="trophy-gold"
-            x1="85"
-            y1="70"
-            x2="213"
-            y2="155"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#fff2ad" />
-            <stop offset=".32" stop-color="#ffc84d" />
-            <stop offset=".7" stop-color="#d9901c" />
-            <stop offset="1" stop-color="#ffda68" />
-          </linearGradient>
-          <linearGradient
-            id="trophy-base"
-            x1="115"
-            y1="231"
-            x2="190"
-            y2="269"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#52626a" />
-            <stop offset="1" stop-color="#1a252c" />
-          </linearGradient>
-        </defs>
-        <ellipse
-          cx="150"
-          cy="267"
-          rx="99"
-          ry="10"
-          fill="#050b0f"
-          opacity=".45"
-        />
-        <g stroke="#533512" stroke-width="6" stroke-linejoin="round">
-          <path
-            d="M93 68H53v29c0 36 22 55 57 57l-5-22c-20-3-30-14-30-35v-7h22M207 68h40v29c0 36-22 55-57 57l5-22c20-3 30-14 30-35v-7h-22"
-            fill="url(#trophy-gold)"
-          />
-          <path d="M139 164h22v42l27 19h-76l27-19z" fill="url(#trophy-gold)" />
-          <path
-            d="M88 53h124l-9 66c-4 35-25 61-53 61s-49-26-53-61z"
-            fill="url(#trophy-gold)"
-          />
-          <path d="M85 48h130v16H85z" fill="#ffe698" />
-          <path d="M109 222h82v18h-82z" fill="#eeb63e" />
-          <path
-            d="M99 239h102v26H99z"
-            fill="url(#trophy-base)"
-            stroke="#152128"
-          />
-        </g>
-        <path
-          d="M107 77l5 39c2 15 7 26 14 33"
-          stroke="#fff5c4"
-          stroke-width="7"
-          stroke-linecap="round"
-          opacity=".65"
-        />
-        <path
-          d="m150 86 10 20 22 3-16 16 4 22-20-11-20 11 4-22-16-16 22-3z"
-          fill="#fff0a0"
-          stroke="#ac711c"
-          stroke-width="3"
-        />
-        <path
-          d="M132 249h36"
-          stroke="#f1c86a"
-          stroke-width="4"
-          stroke-linecap="round"
-        />
-        <g fill="#fff2b4">
-          <path d="m53 163 4 11 11 4-11 4-4 11-4-11-11-4 11-4z" />
-          <path d="m241 35 3 9 9 3-9 3-3 9-3-9-9-3 9-3z" />
-          <circle cx="224" cy="196" r="3" />
-        </g>
-      </svg>
-    </div>
-    <p class="prize-amount" aria-label="13,000 rupees"><span>₹</span>13,000</p>
+    <h2 id="prize-title">PRICE POOL</h2>
+    <p class="prize-amount" aria-label="13,000 rupees">₹13,000</p>
     <p class="prize-label">TOTAL PRIZE POOL</p>
     <p class="prize-tagline">Build something extraordinary. Claim the glory.</p>
   </div>

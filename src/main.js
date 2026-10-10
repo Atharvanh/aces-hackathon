@@ -37,6 +37,7 @@ import { closeFaqs } from "./sections/faqs/controller.js";
 import { closeAbout } from "./sections/about/controller.js";
 import { state } from "./shared/state.js";
 import { initHomeVideo, stopHomeVideo } from "./sections/home/controller.js";
+import { initFullscreen } from "./shared/fullscreen.js";
 
 bgMusic.loop = true;
 
@@ -254,3 +255,5 @@ updateMuteUI();
 syncMusicState();
 
 initHomeVideo();
+
+initFullscreen();
