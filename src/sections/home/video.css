@@ -10,7 +10,15 @@
   border-radius: inherit;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
+  transform: translateZ(0);
+  will-change: opacity;
+  backface-visibility: hidden;
+}
+
+/* Suspend behind-the-scenes animated GIF while HD video plays to prevent GPU contention */
+.space-frame:has(.home-hackseries-video.is-active) .space-animation {
+  visibility: hidden;
 }
 
 .home-hackseries-video.is-active {
