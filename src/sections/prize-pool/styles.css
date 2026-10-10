@@ -1,12 +1,11 @@
-/* Prize vault uses the supplied room artwork inside the console. */
+/* Prize pool section displaying the new artwork inside the console */
 .prize-page {
   position: absolute;
   inset: 0;
   z-index: 5;
   isolation: isolate;
   overflow: hidden;
-  background: #223438 url("../../../assets/prize-room.jpg") center/100% 100%
-    no-repeat;
+  background: #111a1e url("../../../assets/prize-pool.jpg") center/100% 100% no-repeat;
   color: #fff6d9;
   container-type: size;
 }
@@ -15,129 +14,68 @@
   display: none;
 }
 
-.prize-page:before {
-  content: "";
+.prize-banner-img {
   position: absolute;
-  inset: 13% 5% 5%;
-  z-index: -1;
-  background: radial-gradient(
-    ellipse at center,
-    #07151ee6 0%,
-    #09151da6 40%,
-    transparent 73%
-  );
-  pointer-events: none;
-}
-
-.prize-page:after {
-  content: "";
-  position: absolute;
-  left: 2.4%;
-  top: 3%;
-  width: 11%;
-  height: 10%;
-  background: linear-gradient(115deg, #bfcece, #a2b6b9);
-  border-radius: 3px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.prize-page .prize-close {
-  left: 3.65%;
-  top: 3.95%;
-  height: clamp(32px, 8cqh, 76px);
-  width: auto;
-  aspect-ratio: 1;
-  z-index: 2;
-}
-
-.prize-content {
+  inset: 0;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 13% 8% 5%;
-  text-align: center;
-  text-shadow: 0 3px 7px #000;
-}
-
-.prize-eyebrow {
-  font:
-    600 clamp(7px, 1.25cqh, 12px)/1.3 "DM Sans",
-    sans-serif;
-  letter-spacing: 0.3em;
-  color: #d3e5e4;
-  margin: 0 0 1.5cqh;
-}
-
-.prize-content h2 {
-  font:
-    400 clamp(25px, 7cqh, 72px)/1 Joffrey,
-    sans-serif;
-  letter-spacing: 0.1em;
-  margin: 0;
-  color: #fff3cd;
-}
-
-.prize-trophy {
-  height: 34cqh;
-  flex-shrink: 0;
-  margin: 0 0 0.5cqh;
-  filter: drop-shadow(0 0 24px #ffbe333d);
-}
-
-.prize-trophy svg {
+  object-fit: fill;
   display: block;
-  height: 100%;
-  width: auto;
+  user-select: none;
+  pointer-events: none;
 }
 
-.prize-amount {
-  font:
-    800 clamp(36px, 11cqh, 112px)/1 "Space Grotesk",
-    sans-serif;
-  letter-spacing: -0.045em;
-  color: #ffdc75;
-  margin: 0;
-  text-shadow:
-    0 4px 0 #674820,
-    0 6px 20px #0009;
+/* Interactive top-left cancel button aligned with the cancel button in the artwork */
+.prize-page .prize-close {
+  position: absolute;
+  left: 5.73%;
+  top: 6.89%;
+  transform: translate(-50%, -50%);
+  width: clamp(28px, 8cqh, 54px);
+  height: clamp(28px, 8cqh, 54px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.prize-amount span {
-  font-size: 0.65em;
-  vertical-align: 0.09em;
-  margin-right: 0.1em;
+.prize-page .prize-close svg {
+  display: none;
 }
 
-.prize-label {
-  font:
-    700 clamp(8px, 1.7cqh, 17px)/1.4 "DM Sans",
-    sans-serif;
-  letter-spacing: 0.38em;
-  margin: 1.7cqh 0 0;
-  color: #ffe9ad;
+.prize-page .prize-close:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
-.prize-tagline {
-  font:
-    400 clamp(8px, 1.8cqh, 16px)/1.5 "DM Sans",
-    sans-serif;
-  color: #d5e3e4;
-  margin: 2.5cqh 0 0;
+.prize-page .prize-close:active {
+  transform: translate(-50%, -50%) scale(0.94);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
-@media (max-height: 450px) {
-  .prize-content {
-    padding-top: 10%;
-  }
+.prize-page .prize-close:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
 
-  .prize-eyebrow {
-    letter-spacing: 0.18em;
-  }
-
-  .prize-tagline {
-    margin-top: 1.5cqh;
-  }
+/* Screen reader only content */
+.prize-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
