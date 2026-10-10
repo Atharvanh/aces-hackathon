@@ -2,14 +2,31 @@ import { homeVideo, homeVideoClose } from "../../shared/dom.js";
 import { state } from "../../shared/state.js";
 import { bgMusic, fadeMusic, syncMusicState } from "../../shared/audio.js";
 
+let spaceAnimation = null;
+
+function getSpaceAnimation() {
+  if (!spaceAnimation) {
+    spaceAnimation = document.getElementById("space-animation");
+  }
+  return spaceAnimation;
+}
+
 export function playHomeVideo() {
   if (!homeVideo) return;
   state.isHomeVideoPlaying = true;
   homeVideo.hidden = false;
-  void homeVideo.offsetWidth;
-  homeVideo.classList.add("is-active");
+  const anim = getSpaceAnimation();
+  if (anim) anim.style.visibility = "hidden";
+
+  requestAnimationFrame(() => {
+    homeVideo.classList.add("is-active");
+  });
   if (homeVideoClose) homeVideoClose.hidden = false;
-  homeVideo.currentTime = 0;
+  if (homeVideo.currentTime !== 0) {
+    try {
+      homeVideo.currentTime = 0;
+    } catch (_) {}
+  }
   homeVideo.muted = state.isMuted;
 
   // Duck background music while the video plays
@@ -37,6 +54,9 @@ export function stopHomeVideo() {
     homeVideo.pause();
     homeVideo.currentTime = 0;
   } catch (_) {}
+  const anim = getSpaceAnimation();
+  if (anim) anim.style.visibility = "";
+
   setTimeout(() => {
     if (!state.isHomeVideoPlaying && homeVideo) {
       homeVideo.hidden = true;
