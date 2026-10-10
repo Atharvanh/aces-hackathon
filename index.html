@@ -11,129 +11,6 @@
 </head>
 
 <body>
-    <!-- Among Us Preloader: SHHH! Intro + Animated Loading Screen + Task Progress Bar -->
-    <div id="preloader-overlay" class="preloader-overlay" aria-label="Among Us Startup">
-      <!-- Dynamic Space Starfield & Cosmic Dust -->
-      <div class="preloader-space-bg" aria-hidden="true">
-        <div class="space-nebula"></div>
-        <div class="preloader-stars-layer layer-1"></div>
-        <div class="preloader-stars-layer layer-2"></div>
-        <div class="preloader-stars-layer layer-3"></div>
-      </div>
-
-      <!-- Stage 1: The Iconic "SHHH!" Sequence -->
-      <div id="stage-shhh" class="stage-shhh is-active">
-        <div class="shhh-box">
-          <!-- High Quality Among Us SHHH video with audio -->
-          <video
-            id="shhh-video"
-            class="shhh-video"
-            src="assets/among_us_shhh.mp4"
-            playsinline
-            webkit-playsinline
-            muted
-            preload="auto"
-          ></video>
-          <!-- Layered Visual fallback / booster -->
-          <div class="shhh-graphic-fallback" id="shhh-graphic-fallback">
-            <div class="shhh-sunburst">
-              <img src="assets/shh_sunburst.png" alt="" draggable="false" />
-            </div>
-            <div class="shhh-character-wrap">
-              <img class="shhh-crew" src="assets/shh_crewmate.png" alt="Red Crewmate" draggable="false" />
-              <img class="shhh-hand" src="assets/shh_hand.png" alt="Crewmate Shushing Finger" draggable="false" />
-            </div>
-            <div class="shhh-text-wrap">
-              <img class="shhh-text-img" src="assets/shh_text.png" alt="SHHHHHHH!" draggable="false" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stage 2: Among Us Space Loading Screen & Task Bar -->
-      <div id="stage-loading" class="stage-loading">
-        <!-- Floating Drifting Crewmates across Deep Space -->
-        <div class="floating-crew-constellation" aria-hidden="true">
-          <div class="drifter drifter-cyan">
-            <img src="assets/crew_float_cyan.png" alt="" draggable="false" />
-          </div>
-          <div class="drifter drifter-lime">
-            <img src="assets/crew_float_lime.png" alt="" draggable="false" />
-          </div>
-          <div class="drifter drifter-yellow">
-            <img src="assets/crew_float_yellow.png" alt="" draggable="false" />
-          </div>
-          <div class="drifter drifter-pink">
-            <img src="assets/crew_float_pink.png" alt="" draggable="false" />
-          </div>
-          <div class="drifter drifter-orange">
-            <img src="assets/crew_float_orange.png" alt="" draggable="false" />
-          </div>
-        </div>
-
-        <!-- Centered Loading Console Panel -->
-        <div class="loading-console-panel">
-          <!-- Top Title Branding -->
-          <div class="loading-brand-header">
-            <img class="among-us-logo-img" src="assets/among_us_logo.svg" alt="Among Us" draggable="false" />
-            <div class="loading-subheading">
-              <span class="subhead-pill">THE SKELD TERMINAL</span>
-              <span class="subhead-status"><i class="status-pulse"></i> CONNECTING</span>
-            </div>
-          </div>
-
-          <!-- Among Us Task Progress Bar -->
-          <div class="task-bar-module">
-            <div class="task-bar-meta">
-              <div class="task-meta-left">
-                <span class="task-icon">📋</span>
-                <span class="task-bar-title">TOTAL TASKS COMPLETED</span>
-              </div>
-              <div class="task-meta-right">
-                <span id="task-percentage" class="task-percentage">0%</span>
-              </div>
-            </div>
-
-            <div class="task-bar-track">
-              <!-- The segmented green progress fill -->
-              <div id="task-bar-fill" class="task-bar-fill" style="width: 0%;">
-                <div class="task-bar-glow"></div>
-                <!-- Mini Cyan Crewmate running on top of progress bar! -->
-                <div class="task-bar-crewmate">
-                  <img src="assets/crew_mini_cyan.png" alt="Running Crewmate" draggable="false" />
-                </div>
-              </div>
-              <!-- Segment dividers like in the game -->
-              <div class="task-bar-segments" aria-hidden="true">
-                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              </div>
-            </div>
-
-            <!-- Terminal Status Logs -->
-            <div class="task-status-log">
-              <span class="log-cursor">❯</span>
-              <span id="task-status-text" class="task-status-text">INITIALIZING SKELD REACTOR CORE...</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CRT Flash Bloom Effect on completion / transition -->
-      <div id="preloader-flash" class="preloader-flash" aria-hidden="true"></div>
-
-      <!-- Preloader Controls & Audio Prompt -->
-      <div class="preloader-hud">
-        <button id="preloader-skip" class="preloader-skip" type="button" aria-label="Skip Intro">
-          <span>SKIP INTRO</span>
-          <kbd>ESC</kbd>
-        </button>
-        <div id="preloader-audio-prompt" class="preloader-audio-prompt" aria-hidden="true">
-          <span class="audio-dot"></span>
-          <span class="audio-text">TAP FOR AUDIO 🔊</span>
-        </div>
-      </div>
-    </div>
-
     <section class="orientation-notice" role="status" aria-labelledby="rotate-title"><svg class="rotate-phone"
             viewBox="0 0 120 120" aria-hidden="true">
             <rect x="37" y="20" width="46" height="80" rx="9" />
@@ -147,7 +24,7 @@
     </section>
 
     <main>
-        <div class="console-wrap booting">
+        <div class="console-wrap">
             <div class="console" aria-label="Interactive handheld console">
                 <button class="shoulder left-shoulder" data-action="prev"
                     aria-label="Previous destination">L</button><button class="shoulder right-shoulder"
@@ -250,7 +127,7 @@
                                 </section>
                             </div>
                             <section class="prize-page" id="prize-page" aria-labelledby="prize-title" hidden>
-                                <button class="prize-close" data-action="close-prize" aria-label="Close Prize Pool and return to Home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8 24 24M24 8 8 24" /></svg></button>
+                                <button class="prize-close faq-close ps-close" data-action="close-prize" aria-label="Close Prize Pool and return to Home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8 24 24M24 8 8 24" /></svg></button>
                                 <div class="prize-content">
                                     <p class="prize-eyebrow">HACKATHON 3.0 · REWARDS</p>
                                     <h2 id="prize-title">PRIZE POOL</h2>
@@ -505,6 +382,10 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                            </article>
+                                            <article class="faq-item about-location">
+                                                <h3>Find Us</h3>
+                                                <iframe title="Map to Dnyaan Prasad Global University (DPGU)" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8992.39181563423!2d73.8156806423542!3d18.623925203701205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b926824835cf%3A0x590ab9c4355b678d!2sDnyaan%20Prasad%20Global%20University(DPGU)!5e0!3m2!1sen!2sin!4v1791640533899!5m2!1sen!2sin" width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                                             </article>
                                             <article class="faq-item">
                                                 <h3>Why Compete?</h3>

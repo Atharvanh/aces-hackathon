@@ -1,22 +1,6 @@
 import themeMusicUrl from './assets/01-among-us-theme_hlItXaiw.mp3';
 import hoverSoundUrl from './assets/ui-hover.mp3';
 import selectSoundUrl from './assets/ui-select.mp3';
-import shhhAudioUrl from './assets/among_us_shh.mp3';
-
-const preloaderOverlay = document.getElementById('preloader-overlay');
-const stageShhh = document.getElementById('stage-shhh');
-const shhhVideo = document.getElementById('shhh-video');
-const stageLoading = document.getElementById('stage-loading');
-const taskBarFill = document.getElementById('task-bar-fill');
-const taskPercentage = document.getElementById('task-percentage');
-const taskStatusText = document.getElementById('task-status-text');
-const preloaderFlash = document.getElementById('preloader-flash');
-const preloaderSkip = document.getElementById('preloader-skip');
-const preloaderAudioPrompt = document.getElementById('preloader-audio-prompt');
-const consoleWrap = document.querySelector('.console-wrap');
-let isPreloaderActive = true;
-let hasSubmerged = false;
-
 const homeVideo = document.getElementById('home-hackseries-video');
 const homeVideoClose = document.getElementById('close-home-video');
 let isHomeVideoPlaying = false;
@@ -164,7 +148,7 @@ function toggleMute() {
       try { bgMusic.pause(); } catch (_) {}
     });
   } else {
-    if (!isHomeVideoPlaying && !isPreloaderActive) {
+    if (!isHomeVideoPlaying) {
       syncMusicState();
       triggerSelect();
     }
@@ -232,7 +216,7 @@ function pauseBgMusic() {
 }
 
 function syncMusicState() {
-  if (isPreloaderActive || isHomeVideoPlaying) {
+  if (isHomeVideoPlaying) {
     pauseBgMusic();
     return;
   }
@@ -486,8 +470,7 @@ function choose(index, activate = false) {
   if (activate && selected === 4) { openAbout(); return; }
   if (activate && selected === 3) { openFaqs(); return; }
   if (activate && selected === 2) { openPrizes(); return; }
-  // Keep the menu button visible while problem statements are unreleased.
-  if (activate && selected === 1) { syncMusicState(); return; }
+  if (activate && selected === 1) { openProblems(); return; }
   if (activate && selected !== 0) showNotice(buttons[selected].textContent + ' — page coming next.');
   if (!isHomeVideoPlaying) syncMusicState();
 }
@@ -682,192 +665,6 @@ document.addEventListener('keydown', event => {
   if (event.repeat || event.target.closest('.controller')) return;
 }, true);
 
-// Among Us Preloader: SHHH intro -> Space loading bar -> Seamless Nintendo Switch submerge
-function submergeToConsole() {
-  if (hasSubmerged) return;
-  hasSubmerged = true;
-  isPreloaderActive = false;
-
-  if (preloaderOverlay) {
-    preloaderOverlay.classList.add('is-submerging');
-  }
-  if (consoleWrap) {
-    consoleWrap.classList.remove('booting');
-    consoleWrap.classList.add('emerged');
-  }
-
-  // Smoothly fade in home background music
-  syncMusicState();
-
-  setTimeout(() => {
-    if (preloaderOverlay) {
-      preloaderOverlay.classList.add('is-hidden');
-      try {
-        if (shhhVideo) shhhVideo.pause();
-      } catch (_) {}
-    }
-  }, 750);
-}
-
-function initPreloader() {
-  if (!preloaderOverlay) {
-    submergeToConsole();
-    return;
-  }
-
-  // Authentic Among Us SHHH Audio
-  let shhhAudio = null;
-  try {
-    shhhAudio = new Audio(shhhAudioUrl);
-    shhhAudio.volume = 0.85;
-  } catch (_) {}
-
-  let audioUnlocked = false;
-
-  function attemptPlayAudio() {
-    if (audioUnlocked || !shhhAudio) return;
-    shhhAudio.play().then(() => {
-      audioUnlocked = true;
-      if (preloaderAudioPrompt) preloaderAudioPrompt.classList.add('is-hidden');
-    }).catch(() => {
-      // Browser audio autoplay restriction
-    });
-  }
-
-  function userUnmute() {
-    audioUnlocked = true;
-    if (preloaderAudioPrompt) preloaderAudioPrompt.classList.add('is-hidden');
-    if (shhhVideo) shhhVideo.muted = false;
-    if (shhhAudio) {
-      shhhAudio.currentTime = 0;
-      shhhAudio.play().catch(() => {});
-    }
-  }
-
-  preloaderOverlay.addEventListener('click', userUnmute);
-  preloaderAudioPrompt?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    userUnmute();
-  });
-
-  // Skip Intro button and ESC key
-  preloaderSkip?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    submergeToConsole();
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isPreloaderActive) {
-      submergeToConsole();
-    }
-  });
-
-  // Autoplay SHHH video (muted initially to bypass browser restrictions)
-  if (shhhVideo) {
-    shhhVideo.muted = true;
-    shhhVideo.play().catch(() => {});
-  }
-  attemptPlayAudio();
-
-  // Authentic Humor & Tasks Status Log Messages
-  const statusMessages = [
-    { pct: 0, text: '[1/6] CONNECTING TO THE SKELD NAVIGATION...' },
-    { pct: 18, text: '[2/6] DIVERTING POWER TO REACTOR & SHIELDS...' },
-    { pct: 40, text: '[3/6] SWIPING ADMIN CARD... ACCEPTED ON FIRST TRY!' },
-    { pct: 64, text: '[4/6] CALIBRATING OXYGEN ENGINES & SENSORS...' },
-    { pct: 85, text: '[5/6] SCANNING CREWMATES (0 IMPOSTORS DETECTED)...' },
-    { pct: 97, text: '[6/6] CREW CONSOLE OPTIMAL. LAUNCHING NINTENDO SWITCH...' }
-  ];
-
-  function startLoadingStage() {
-    if (hasSubmerged) return;
-
-    // Transition out Stage 1, bring in Stage 2
-    if (stageShhh) {
-      stageShhh.classList.remove('is-active');
-      stageShhh.classList.add('is-exiting');
-    }
-    if (stageLoading) {
-      stageLoading.classList.add('is-active');
-    }
-
-    // Play subtle select beep on stage enter if sound enabled
-    if (audioUnlocked && !isMuted) {
-      try {
-        const blip = new Audio(selectSoundUrl);
-        blip.volume = 0.35;
-        blip.play().catch(() => {});
-      } catch (_) {}
-    }
-
-    // Animate the Task Progress Bar from 0% to 100% over ~2.8s
-    const startTime = performance.now();
-    const duration = 2800; // 2.8s duration
-    let currentPct = 0;
-
-    function tick(now) {
-      if (hasSubmerged) return;
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Organic easing curve with humorous hesitation around admin card swipe (~40%)
-      let eased;
-      if (progress < 0.35) {
-        eased = progress * 1.1; // initial fast boot
-      } else if (progress < 0.5) {
-        eased = 0.385 + (progress - 0.35) * 0.3; // brief card swipe pause
-      } else {
-        const rem = (progress - 0.5) / 0.5;
-        eased = 0.43 + (1 - Math.pow(1 - rem, 2.5)) * 0.57; // smooth acceleration to 100%
-      }
-
-      currentPct = Math.min(100, Math.floor(eased * 100));
-
-      if (taskBarFill) taskBarFill.style.width = `${currentPct}%`;
-      if (taskPercentage) taskPercentage.textContent = `${currentPct}%`;
-
-      // Find status text
-      let matchedStatus = statusMessages[0].text;
-      for (const item of statusMessages) {
-        if (currentPct >= item.pct) {
-          matchedStatus = item.text;
-        }
-      }
-      if (taskStatusText && taskStatusText.textContent !== matchedStatus) {
-        taskStatusText.textContent = matchedStatus;
-      }
-
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        // Complete! Trigger flash and submerge
-        if (taskPercentage) taskPercentage.textContent = '100%';
-        if (taskBarFill) taskBarFill.style.width = '100%';
-
-        if (preloaderFlash) {
-          preloaderFlash.classList.add('is-active');
-        }
-
-        setTimeout(() => {
-          submergeToConsole();
-        }, 320);
-      }
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  // Trigger Stage 2 after Stage 1 (SHHH) has played ~1.85 seconds
-  setTimeout(() => {
-    startLoadingStage();
-  }, 1900);
-
-  // Safety fallback
-  setTimeout(() => {
-    if (!hasSubmerged) submergeToConsole();
-  }, 7500);
-}
-
 // Home screen interactive video controls
 function playHomeVideo() {
   if (!homeVideo) return;
@@ -925,7 +722,7 @@ function initHomeVideo() {
   });
 }
 
-// Initialize preloader, home video, and mute button UI
+// Initialize home video, background music, and mute button UI
 updateMuteUI();
-initPreloader();
+syncMusicState();
 initHomeVideo();
