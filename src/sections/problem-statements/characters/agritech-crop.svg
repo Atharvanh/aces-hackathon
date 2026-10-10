@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 270" role="img" aria-labelledby="title"><title id="title">Lime crop scientist in a straw hat scanning a leaf with a magnifying glass</title>
+<style>
+.crew{animation:bob 1.3s ease-in-out infinite;transform-origin:115px 220px}
+.foot-a{animation:step 1.3s ease-in-out infinite;transform-origin:92px 192px}.foot-b{animation:step 1.3s ease-in-out -.65s infinite;transform-origin:125px 192px}
+.float,.satellite{animation:float 2.8s ease-in-out infinite}.satellite{transform-origin:186px 97px}
+.signal,.pulse{animation:pulse 1.8s ease-in-out infinite}.pulse{transform-origin:183px 98px}
+.scan{animation:scan 3s ease-in-out infinite}.needle{animation:needle 3s ease-in-out infinite;transform-origin:180px 169px}
+.heartbeat{stroke-dasharray:65;animation:trace 1.8s linear infinite}.radar{animation:spin 4s linear infinite;transform-origin:179px 165px}
+.rover{animation:roll 2s ease-in-out infinite}.drops{animation:rain 1.2s linear infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-2deg)}}@keyframes step{50%{transform:rotate(13deg) translateY(-3px)}}
+@keyframes float{50%{transform:translateY(-9px) rotate(4deg)}}@keyframes pulse{50%{opacity:.55;transform:scale(.96)}}
+@keyframes scan{50%{transform:translate(-7px,7px)}}@keyframes needle{50%{transform:rotate(-65deg)}}
+@keyframes trace{0%{stroke-dashoffset:65}70%,100%{stroke-dashoffset:0}}@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes roll{50%{transform:translateX(-6px) rotate(-2deg)}}@keyframes rain{0%{transform:translateY(-4px);opacity:0}30%{opacity:1}100%{transform:translateY(12px);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<ellipse cx="119" cy="239" rx="68" ry="11" fill="#75c64e" opacity=".13"/>
+<g class="crew" stroke="#080f15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<rect x="131" y="113" width="32" height="76" rx="12" fill="#38733a"/><path d="M143 122h10v48h-10" fill="#75c64e" stroke="none"/>
+<path class="foot-b" d="M112 182h29v39q-9 7-28 2z" fill="#38733a"/>
+<path class="foot-a" d="M77 181h30v43q-11 12-30 2z" fill="#38733a"/>
+<path d="M73 112q-2-39 34-39 39 0 40 40v49q0 39-38 39-35 0-36-29z" fill="#38733a"/>
+<path d="M79 108q-1-28 27-29 30 0 33 31v38q0 34-31 35-22 0-29-17z" fill="#75c64e" stroke="none"/>
+<path d="M83 149h12v12h26v-12h12v43H83z" fill="#376d72"/><path d="M98 172h20v13H98z" fill="#519494" stroke-width="2"/>
+<path d="M68 102q15-12 52-7 16 3 15 19-1 20-23 21H79q-19-1-19-16 0-10 8-17z" fill="#496a7b"/>
+<path d="M69 106q17-9 48-6 10 1 10 10-3 12-37 11-23 0-21-15z" fill="#8fcbdc" stroke="none"/>
+<path d="M78 105q10-4 28-2" fill="none" stroke="#effcff" stroke-width="7"/>
+<path d="m78 76 10-26h41l10 26" fill="#e5be71"/><path d="M61 77q48-19 96 0l-4 12H65z" fill="#f1d38d"/><path d="M82 69h54" stroke="#9a693e" stroke-width="6"/><path d="M174 152q-15-35 12-40 20 26-12 40z" fill="#a0e44a"/><path d="m173 168 10-43" fill="none" stroke="#325f2c" stroke-width="3"/><path d="M159 170h38l-5 27h-28z" fill="#c78150"/><g class="scan"><circle cx="185" cy="139" r="18" fill="#bcf4de55" stroke="#e6d590" stroke-width="6"/><path d="m198 153 12 15" stroke="#e6d590" stroke-width="6"/></g><path class="signal" d="m167 96 7 7 14-15" fill="none" stroke="#a9ed91" stroke-width="4"/>
+<path d="M146 167q-11-5-13 5t13 13l10-4v-10z" fill="#75c64e" stroke-width="5"/>
+</g></svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 270" role="img" aria-labelledby="title"><title id="title">White medical records crewmate wearing a teal medical band and holding a locked health record</title>
+<style>
+.crew{animation:bob 1.3s ease-in-out infinite;transform-origin:115px 220px}
+.foot-a{animation:step 1.3s ease-in-out infinite;transform-origin:92px 192px}.foot-b{animation:step 1.3s ease-in-out -.65s infinite;transform-origin:125px 192px}
+.float,.satellite{animation:float 2.8s ease-in-out infinite}.satellite{transform-origin:186px 97px}
+.signal,.pulse{animation:pulse 1.8s ease-in-out infinite}.pulse{transform-origin:183px 98px}
+.scan{animation:scan 3s ease-in-out infinite}.needle{animation:needle 3s ease-in-out infinite;transform-origin:180px 169px}
+.heartbeat{stroke-dasharray:65;animation:trace 1.8s linear infinite}.radar{animation:spin 4s linear infinite;transform-origin:179px 165px}
+.rover{animation:roll 2s ease-in-out infinite}.drops{animation:rain 1.2s linear infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-2deg)}}@keyframes step{50%{transform:rotate(13deg) translateY(-3px)}}
+@keyframes float{50%{transform:translateY(-9px) rotate(4deg)}}@keyframes pulse{50%{opacity:.55;transform:scale(.96)}}
+@keyframes scan{50%{transform:translate(-7px,7px)}}@keyframes needle{50%{transform:rotate(-65deg)}}
+@keyframes trace{0%{stroke-dashoffset:65}70%,100%{stroke-dashoffset:0}}@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes roll{50%{transform:translateX(-6px) rotate(-2deg)}}@keyframes rain{0%{transform:translateY(-4px);opacity:0}30%{opacity:1}100%{transform:translateY(12px);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<ellipse cx="119" cy="239" rx="68" ry="11" fill="#f1f2da" opacity=".13"/>
+<g class="crew" stroke="#080f15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<rect x="131" y="113" width="32" height="76" rx="12" fill="#8aaba8"/><path d="M143 122h10v48h-10" fill="#f1f2da" stroke="none"/>
+<path class="foot-b" d="M112 182h29v39q-9 7-28 2z" fill="#8aaba8"/>
+<path class="foot-a" d="M77 181h30v43q-11 12-30 2z" fill="#8aaba8"/>
+<path d="M73 112q-2-39 34-39 39 0 40 40v49q0 39-38 39-35 0-36-29z" fill="#8aaba8"/>
+<path d="M79 108q-1-28 27-29 30 0 33 31v38q0 34-31 35-22 0-29-17z" fill="#f1f2da" stroke="none"/>
+<path d="m80 149 28 13 29-13v34H80z" fill="#319e9d"/><path d="M103 166h11m-5-5v11" stroke="#e4f5db" stroke-width="4"/>
+<path d="M68 102q15-12 52-7 16 3 15 19-1 20-23 21H79q-19-1-19-16 0-10 8-17z" fill="#496a7b"/>
+<path d="M69 106q17-9 48-6 10 1 10 10-3 12-37 11-23 0-21-15z" fill="#8fcbdc" stroke="none"/>
+<path d="M78 105q10-4 28-2" fill="none" stroke="#effcff" stroke-width="7"/>
+<path d="M71 86q37-19 74 0v-16q-37-19-74 0z" fill="#3aa6a2"/><circle cx="109" cy="70" r="15" fill="#d5eee1"/><circle cx="109" cy="70" r="6" fill="#82afb2" stroke-width="2"/><path d="M153 131h25l7 9h22v56h-54z" fill="#76ccba"/><rect x="173" y="159" width="24" height="22" rx="4" fill="#ffd269"/><path d="M179 159v-7a6 6 0 0 1 12 0v7" fill="none" stroke="#ffe3a6" stroke-width="4"/><circle cx="185" cy="169" r="3" fill="#293c40" stroke="none"/><path d="M161 147h12m-6-6v12" stroke="#f3f5df" stroke-width="4"/><g class="float"><path d="m179 91 14-7 14 7v15l-14 12-14-12z" fill="#34515a"/><path class="signal" d="m185 99 6 6 10-12" fill="none" stroke="#abefc7" stroke-width="3"/></g>
+<path d="M146 167q-11-5-13 5t13 13l10-4v-10z" fill="#f1f2da" stroke-width="5"/>
+</g></svg>

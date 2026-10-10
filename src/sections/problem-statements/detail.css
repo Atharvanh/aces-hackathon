@@ -19,6 +19,7 @@
   min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   gap: clamp(12px, 2vw, 30px);
   padding: clamp(12px, 2vh, 24px) clamp(14px, 2vw, 30px)
     clamp(16px, 2.5vh, 30px);
@@ -131,6 +132,7 @@
 
 .problem-character {
   min-width: 0;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,8 +142,9 @@
 
 .problem-character img {
   display: block;
+  min-height: 0;
   width: 100%;
-  max-height: 70%;
+  max-height: 65%;
   object-fit: contain;
   filter: drop-shadow(0 14px 16px #0007);
 }
@@ -153,6 +156,16 @@
   letter-spacing: 1px;
   color: #c9ded6;
   margin-top: 12px;
+  text-align: center;
+}
+
+.problem-character small {
+  margin-top: 8px;
+  font: 500 clamp(9px, 1vw, 12px)/1.4 "DM Sans", sans-serif;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: #9cbfb1;
+  text-align: center;
 }
 
 @media (max-width: 560px) {
@@ -183,7 +196,6 @@
   }
 
   .problem-character img {
-    width: 135%;
-    max-width: none;
+    width: 100%;
   }
 }

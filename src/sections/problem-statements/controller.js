@@ -1,4 +1,5 @@
 import { domainList } from "./data.js";
+import { missionCharacters } from "./characters/index.js";
 import { state } from "../../shared/state.js";
 import {
   aboutOverlay,
@@ -64,8 +65,13 @@ export function openProblemDetail(choiceIndex) {
     }),
   );
 
-  document.getElementById("problem-character-label").textContent =
-    "CREWMATE " + String(choiceIndex + 1).padStart(2, "0");
+  const character = missionCharacters[state.activeDomain * 2 + choiceIndex];
+  const characterImage = document.getElementById("problem-character-image");
+  characterImage.src = character.src;
+  characterImage.alt = character.alt;
+  document.getElementById("problem-character-label").textContent = character.name;
+  document.getElementById("problem-character-domain").textContent =
+    `${domain.name} / ${problem.problemNum}`;
 
   levelSelectModal.hidden = true;
   psPage.inert = true;

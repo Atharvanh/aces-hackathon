@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 270" role="img" aria-labelledby="title"><title id="title">Yellow irrigation crewmate with a sprout cap and a watering can pouring animated droplets</title>
+<style>
+.crew{animation:bob 1.3s ease-in-out infinite;transform-origin:115px 220px}
+.foot-a{animation:step 1.3s ease-in-out infinite;transform-origin:92px 192px}.foot-b{animation:step 1.3s ease-in-out -.65s infinite;transform-origin:125px 192px}
+.float,.satellite{animation:float 2.8s ease-in-out infinite}.satellite{transform-origin:186px 97px}
+.signal,.pulse{animation:pulse 1.8s ease-in-out infinite}.pulse{transform-origin:183px 98px}
+.scan{animation:scan 3s ease-in-out infinite}.needle{animation:needle 3s ease-in-out infinite;transform-origin:180px 169px}
+.heartbeat{stroke-dasharray:65;animation:trace 1.8s linear infinite}.radar{animation:spin 4s linear infinite;transform-origin:179px 165px}
+.rover{animation:roll 2s ease-in-out infinite}.drops{animation:rain 1.2s linear infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-2deg)}}@keyframes step{50%{transform:rotate(13deg) translateY(-3px)}}
+@keyframes float{50%{transform:translateY(-9px) rotate(4deg)}}@keyframes pulse{50%{opacity:.55;transform:scale(.96)}}
+@keyframes scan{50%{transform:translate(-7px,7px)}}@keyframes needle{50%{transform:rotate(-65deg)}}
+@keyframes trace{0%{stroke-dashoffset:65}70%,100%{stroke-dashoffset:0}}@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes roll{50%{transform:translateX(-6px) rotate(-2deg)}}@keyframes rain{0%{transform:translateY(-4px);opacity:0}30%{opacity:1}100%{transform:translateY(12px);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<ellipse cx="119" cy="239" rx="68" ry="11" fill="#edc741" opacity=".13"/>
+<g class="crew" stroke="#080f15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<rect x="131" y="113" width="32" height="76" rx="12" fill="#a07929"/><path d="M143 122h10v48h-10" fill="#edc741" stroke="none"/>
+<path class="foot-b" d="M112 182h29v39q-9 7-28 2z" fill="#a07929"/>
+<path class="foot-a" d="M77 181h30v43q-11 12-30 2z" fill="#a07929"/>
+<path d="M73 112q-2-39 34-39 39 0 40 40v49q0 39-38 39-35 0-36-29z" fill="#a07929"/>
+<path d="M79 108q-1-28 27-29 30 0 33 31v38q0 34-31 35-22 0-29-17z" fill="#edc741" stroke="none"/>
+<path d="M84 149h12v13h24v-13h12v42H84z" fill="#476f61"/><rect x="98" y="173" width="19" height="11" rx="2" fill="#b3dbbc" stroke-width="2"/>
+<path d="M68 102q15-12 52-7 16 3 15 19-1 20-23 21H79q-19-1-19-16 0-10 8-17z" fill="#496a7b"/>
+<path d="M69 106q17-9 48-6 10 1 10 10-3 12-37 11-23 0-21-15z" fill="#8fcbdc" stroke="none"/>
+<path d="M78 105q10-4 28-2" fill="none" stroke="#effcff" stroke-width="7"/>
+<path d="M74 85V71q36-25 68 0v15z" fill="#4d9471"/><path d="M133 81h26q7 11-15 12" fill="#4d9471"/><path d="M108 65V44m0 11q-22 0-18-17 18 0 18 17zm0-7q0-20 19-17 0 17-19 17z" fill="#a4d972" stroke-width="3"/><path d="M159 146q-20-14-19 9t23 16" fill="none" stroke="#9ed2cb" stroke-width="6"/><path d="M157 147h31v39h-31z" fill="#6db9b2"/><path d="m187 165 14-17 10 7-23 26" fill="#6db9b2"/><path d="m202 144 13 8" stroke="#b7e4d3" stroke-width="6"/><g class="drops" fill="#9be8ef" stroke="none"><path d="m208 168-4 8a5 5 0 0 0 8 0z"/><path d="m197 186-4 8a5 5 0 0 0 8 0z"/><path d="m214 190-4 8a5 5 0 0 0 8 0z"/></g><path class="signal" d="M170 112v-14m9 14V88m9 24V99" stroke="#a4e7be" stroke-width="5"/>
+<path d="M146 167q-11-5-13 5t13 13l10-4v-10z" fill="#edc741" stroke-width="5"/>
+</g></svg>
