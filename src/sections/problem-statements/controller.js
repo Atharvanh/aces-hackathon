@@ -21,7 +21,7 @@ export function openLevelSelect(domainIndex) {
   state.activeDomain = domainIndex;
 
   const domainTag = document.getElementById("level-domain-tag");
-  if (domainTag) domainTag.textContent = `${domain.name.toUpperCase()} DOMAIN`;
+  if (domainTag) domainTag.textContent = `DOMAIN ${domainIndex + 1} // ${domain.name.toUpperCase()}`;
 
   const ps0Name = document.getElementById("level-ps-0-name");
   if (ps0Name) ps0Name.textContent = domain.problems[0]?.name || "";

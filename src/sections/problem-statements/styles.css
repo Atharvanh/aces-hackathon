@@ -118,15 +118,21 @@
 }
 
 .ps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(17px, 3vw, 44px) clamp(10px, 1.5vw, 25px);
+  --col-gap: clamp(10px, 1.5vw, 25px);
+  --row-gap: clamp(17px, 3vw, 44px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--row-gap) var(--col-gap);
   align-items: start;
 }
 
 .ps-card {
   display: flex;
   flex-direction: column;
+  flex: 0 0 calc((100% - 2 * var(--col-gap)) / 3);
+  width: calc((100% - 2 * var(--col-gap)) / 3);
+  max-width: calc((100% - 2 * var(--col-gap)) / 3);
   min-width: 0;
   overflow: hidden;
   position: relative;
@@ -357,8 +363,8 @@
 
 @media (max-width: 560px) {
   .ps-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 9px;
+    --col-gap: 9px;
+    --row-gap: 16px;
   }
 
   .ps-scroll {
@@ -372,6 +378,9 @@
   }
 
   .ps-card {
+    flex: 0 0 calc((100% - var(--col-gap)) / 2);
+    width: calc((100% - var(--col-gap)) / 2);
+    max-width: calc((100% - var(--col-gap)) / 2);
     border-width: 4px;
     border-radius: 13px;
   }
