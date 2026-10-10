@@ -37,43 +37,6 @@ export const domainList = [
     ],
   },
   {
-    name: "Healthcare",
-    code: "HEALTHCARE",
-    tagline: "Emergency triage, patient records & hospital resource coordination",
-    problems: [
-      {
-        problemNum: "01",
-        name: "Smart Emergency Triage & Bed Allocation",
-        summary:
-          "Optimize emergency room intake and real-time hospital resource coordination.",
-        challenge:
-          "Hospitals experience severe intake bottlenecks during peak hours, delaying critical care. Build a predictive intake terminal that analyzes patient symptoms, assigns urgency tiers, and synchronizes real-time bed availability.",
-        deliverables: [
-          "Symptom intake triage form with automated urgency classification.",
-          "Live multi-department bed and equipment allocation dashboard.",
-          "Emergency ambulance transit beacon with live patient telemetry.",
-        ],
-        demo:
-          "Submit a high-urgency patient case and observe automatic triage prioritization and hospital bed dispatch.",
-      },
-      {
-        problemNum: "02",
-        name: "Universal Medical Records Vault",
-        summary:
-          "Enable secure, patient-owned health record exchange across care providers.",
-        challenge:
-          "Patient medical histories are siloed across disconnected clinics, leading to redundant tests and delayed diagnosis. Design a zero-knowledge encrypted vault where patients grant granular, time-bound access to verified doctors.",
-        deliverables: [
-          "Patient records dashboard with biometric encryption keys.",
-          "Granular consent management interface for doctors and labs.",
-          "Audit trail logging every medical history access event.",
-        ],
-        demo:
-          "Grant a temporary 24-hour medical history access pass to a doctor and verify automatic revocation.",
-      },
-    ],
-  },
-  {
     name: "Legal",
     code: "LEGAL",
     tagline: "Contract analysis, predatory clause detection & proof registries",
@@ -107,6 +70,43 @@ export const domainList = [
         ],
         demo:
           "Register a creative design, generate an immutable proof certificate, and verify it on the public lookup terminal.",
+      },
+    ],
+  },
+  {
+    name: "Healthcare",
+    code: "HEALTHCARE",
+    tagline: "Emergency triage, patient records & hospital resource coordination",
+    problems: [
+      {
+        problemNum: "01",
+        name: "Smart Emergency Triage & Bed Allocation",
+        summary:
+          "Optimize emergency room intake and real-time hospital resource coordination.",
+        challenge:
+          "Hospitals experience severe intake bottlenecks during peak hours, delaying critical care. Build a predictive intake terminal that analyzes patient symptoms, assigns urgency tiers, and synchronizes real-time bed availability.",
+        deliverables: [
+          "Symptom intake triage form with automated urgency classification.",
+          "Live multi-department bed and equipment allocation dashboard.",
+          "Emergency ambulance transit beacon with live patient telemetry.",
+        ],
+        demo:
+          "Submit a high-urgency patient case and observe automatic triage prioritization and hospital bed dispatch.",
+      },
+      {
+        problemNum: "02",
+        name: "Universal Medical Records Vault",
+        summary:
+          "Enable secure, patient-owned health record exchange across care providers.",
+        challenge:
+          "Patient medical histories are siloed across disconnected clinics, leading to redundant tests and delayed diagnosis. Design a zero-knowledge encrypted vault where patients grant granular, time-bound access to verified doctors.",
+        deliverables: [
+          "Patient records dashboard with biometric encryption keys.",
+          "Granular consent management interface for doctors and labs.",
+          "Audit trail logging every medical history access event.",
+        ],
+        demo:
+          "Grant a temporary 24-hour medical history access pass to a doctor and verify automatic revocation.",
       },
     ],
   },
