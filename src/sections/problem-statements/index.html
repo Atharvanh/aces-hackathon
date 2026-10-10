@@ -3,77 +3,125 @@
     <button
       class="ps-close"
       data-action="close-ps"
-      aria-label="Close Problem Statements and return to Home"
+      aria-label="Close Domains and return to Home"
     >
       <svg viewBox="0 0 32 32" aria-hidden="true">
         <path d="M8 8 24 24M24 8 8 24" />
       </svg></button
     ><span class="ps-toolbar-spark" aria-hidden="true"></span>
   </div>
-  <div class="ps-scroll" tabindex="0" aria-label="Problem statement covers">
-    <h2 id="ps-title">Problem Statements</h2>
+  <div class="ps-scroll" tabindex="0" aria-label="Domains">
+    <h2 id="ps-title">Domains</h2>
     <div class="ps-grid">
       <button
         class="ps-card"
         data-problem="0"
-        aria-label="Problem Statement 1"
+        aria-label="Fintech Domain"
         aria-pressed="false"
       >
         <img
           src="assets/problem-1.png"
-          alt="Three armored crewmates in colorful beams of light"
+          alt="Fintech Domain"
           width="429"
           height="512"
-        /><span class="ps-card-caption">Problem Statement 01</span></button
+        /><span class="ps-card-caption">Fintech</span></button
       ><button
         class="ps-card"
         data-problem="1"
-        aria-label="Problem Statement 2"
+        aria-label="Healthcare Domain"
         aria-pressed="false"
       >
         <img
           src="assets/problem-2.png"
-          alt="Costumed crewmates with a goose and yellow alien"
+          alt="Healthcare Domain"
           width="429"
           height="512"
-        /><span class="ps-card-caption">Problem Statement 02</span></button
+        /><span class="ps-card-caption">Healthcare</span></button
       ><button
         class="ps-card"
         data-problem="2"
-        aria-label="Problem Statement 3"
+        aria-label="Legal Domain"
         aria-pressed="false"
       >
         <img
           src="assets/problem-3.png"
-          alt="Crewmates racing on a bright track"
+          alt="Legal Domain"
           width="429"
           height="512"
-        /><span class="ps-card-caption">Problem Statement 03</span></button
+        /><span class="ps-card-caption">Legal</span></button
       ><button
         class="ps-card"
         data-problem="3"
-        aria-label="Problem Statement 4"
+        aria-label="Spacetech Domain"
         aria-pressed="false"
       >
         <img
           src="assets/problem-4.png"
-          alt="Green and pink crewmates floating above the clouds"
+          alt="Spacetech Domain"
           width="429"
           height="512"
-        /><span class="ps-card-caption">Problem Statement 04</span></button
+        /><span class="ps-card-caption">Spacetech</span></button
       ><button
         class="ps-card"
         data-problem="4"
-        aria-label="Problem Statement 5"
+        aria-label="Agritech Domain"
         aria-pressed="false"
       >
         <img
           src="assets/problem-5.png"
-          alt="Fox and dragon costumed crewmates in a dark forest"
+          alt="Agritech Domain"
           width="429"
           height="512"
-        /><span class="ps-card-caption">Problem Statement 05</span>
+        /><span class="ps-card-caption">Agritech</span>
       </button>
+    </div>
+  </div>
+
+  <!-- Game-style Level Select Popup -->
+  <div
+    class="level-select-modal"
+    id="level-select-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="level-title"
+    hidden
+  >
+    <div class="level-select-backdrop" data-action="close-level-select"></div>
+    <div class="level-select-box">
+      <div class="level-select-toolbar">
+        <button
+          class="level-select-close ps-close"
+          data-action="close-level-select"
+          aria-label="Close selection and return to Domains"
+        >
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M8 8 24 24M24 8 8 24" />
+          </svg>
+        </button>
+        <span class="level-domain-tag" id="level-domain-tag">LEGAL DOMAIN</span>
+      </div>
+      <div class="level-select-body">
+        <h3 id="level-title">Select Problem Statement</h3>
+        <p class="level-subtitle">Choose a mission directive to inspect</p>
+        <div class="level-options">
+          <button class="level-btn" data-ps-choice="0">
+            <span class="level-btn-num">01</span>
+            <div class="level-btn-info">
+              <span class="level-btn-label">Problem Statement 01</span>
+              <span class="level-btn-name" id="level-ps-0-name"></span>
+            </div>
+            <span class="level-btn-arrow" aria-hidden="true">▸</span>
+          </button>
+          <button class="level-btn" data-ps-choice="1">
+            <span class="level-btn-num">02</span>
+            <div class="level-btn-info">
+              <span class="level-btn-label">Problem Statement 02</span>
+              <span class="level-btn-name" id="level-ps-1-name"></span>
+            </div>
+            <span class="level-btn-arrow" aria-hidden="true">▸</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
