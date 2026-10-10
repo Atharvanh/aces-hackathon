@@ -93,3 +93,92 @@
     display: flex;
   }
 }
+
+
+/* Fullscreen Buttons (Portrait Notice & Landscape Floating) */
+.portrait-fullscreen-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(85, 241, 219, 0.45);
+  background: linear-gradient(135deg, rgba(85, 241, 219, 0.2), rgba(37, 75, 73, 0.6));
+  color: #98f1de;
+  font: 600 15px/1.4 "DM Sans", sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.4),
+    0 0 16px rgba(85, 241, 219, 0.2);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portrait-fullscreen-btn:hover,
+.portrait-fullscreen-btn:focus-visible {
+  background: rgba(85, 241, 219, 0.3);
+  border-color: #55f1db;
+  color: #ffffff;
+  transform: scale(1.04);
+  box-shadow:
+    0 6px 22px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(85, 241, 219, 0.4);
+}
+
+.floating-fullscreen-btn {
+  position: fixed;
+  top: clamp(10px, 2vh, 18px);
+  right: clamp(10px, 2vw, 20px);
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(85, 241, 219, 0.35);
+  background: rgba(14, 22, 26, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #98f1de;
+  font: 600 clamp(11px, 1.2vw, 13px)/1 "DM Sans", sans-serif;
+  letter-spacing: 0.5px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(85, 241, 219, 0.15);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-fullscreen-btn:hover,
+.floating-fullscreen-btn:focus-visible {
+  background: rgba(37, 75, 73, 0.95);
+  border-color: #55f1db;
+  color: #ffffff;
+  transform: translateY(-1px) scale(1.04);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(85, 241, 219, 0.4);
+}
+
+/* Hide floating button in portrait mode because portrait notice has its dedicated button */
+@media (orientation: portrait) {
+  .floating-fullscreen-btn {
+    display: none !important;
+  }
+}
+
+/* Disappear when in fullscreen mode */
+:fullscreen .floating-fullscreen-btn,
+:fullscreen .portrait-fullscreen-btn,
+:-webkit-full-screen .floating-fullscreen-btn,
+:-webkit-full-screen .portrait-fullscreen-btn,
+body.is-fullscreen .floating-fullscreen-btn,
+body.is-fullscreen .portrait-fullscreen-btn,
+.floating-fullscreen-btn[hidden],
+.portrait-fullscreen-btn[hidden] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
