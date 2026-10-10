@@ -1,11 +1,33 @@
 /**
- * Fullscreen & Orientation Management
- * Automatically attempts fullscreen on landscape switch when permitted,
- * provides dedicated fullscreen buttons, and hides them when in fullscreen mode.
+ * Fullscreen & Landscape Enforcement for Phones & Tablets
+ * Shows a full-screen pop-up on mobile/tablet devices prompting them
+ * to enter fullscreen landscape mode.
+ * Desktops and laptops never see this popup.
  */
 
-let pendingAutoFullscreen = false;
-let userExitedFullscreen = false;
+export function isMobileOrTablet() {
+  if (typeof window === "undefined" || typeof navigator === "undefined") {
+    return false;
+  }
+  const ua = navigator.userAgent || "";
+  const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua);
+  const isIPad = (navigator.platform === "MacIntel" || ua.includes("Macintosh")) && navigator.maxTouchPoints > 1;
+  const isTouchDevice = ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
+  const hasCoarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+  const hasFinePointerWithHover = window.matchMedia && window.matchMedia("(pointer: fine) and (hover: hover)").matches;
+
+  // Direct mobile/tablet matching
+  if (isMobileUA || isIPad) {
+    return true;
+  }
+
+  // Pure touch screen device without mouse/hover capability
+  if (isTouchDevice && hasCoarsePointer && !hasFinePointerWithHover) {
+    return true;
+  }
+
+  return false;
+}
 
 export function isFullscreen() {
   return Boolean(
@@ -14,6 +36,13 @@ export function isFullscreen() {
     document.mozFullScreenElement ||
     document.msFullscreenElement
   );
+}
+
+export function isLandscape() {
+  if (screen.orientation && screen.orientation.type) {
+    return screen.orientation.type.startsWith("landscape");
+  }
+  return window.innerWidth > window.innerHeight;
 }
 
 export async function requestFullscreen(element = document.documentElement) {
@@ -27,99 +56,69 @@ export async function requestFullscreen(element = document.documentElement) {
     } else if (element.msRequestFullscreen) {
       await element.msRequestFullscreen();
     }
+  } catch (_) {}
 
-    if (screen.orientation && typeof screen.orientation.lock === "function") {
-      screen.orientation.lock("landscape").catch(() => {});
-    }
-    return true;
-  } catch (err) {
-    return false;
+  // Attempt forceful orientation lock to landscape
+  if (screen.orientation && typeof screen.orientation.lock === "function") {
+    screen.orientation.lock("landscape").catch(() => {});
   }
 }
 
-export function isLandscape() {
-  if (screen.orientation && screen.orientation.type) {
-    return screen.orientation.type.startsWith("landscape");
+export function updatePopupVisibility() {
+  const popup = document.getElementById("fullscreen-popup");
+  if (!popup) return;
+
+  // Rule 1: PC and Laptops NEVER see this popup
+  if (!isMobileOrTablet()) {
+    popup.hidden = true;
+    popup.style.display = "none";
+    document.body.classList.remove("has-fullscreen-popup");
+    return;
   }
-  return window.innerWidth > window.innerHeight;
-}
 
-export function updateFullscreenUI() {
-  const active = isFullscreen();
-  document.body.classList.toggle("is-fullscreen", active);
+  // Rule 2: On Phone / Tablet:
+  // If already in fullscreen AND in landscape: hide popup!
+  const inFullscreen = isFullscreen();
+  const inLandscape = isLandscape();
 
-  const toggleBtn = document.getElementById("fullscreen-toggle-btn");
-  const portraitBtn = document.getElementById("portrait-fullscreen-btn");
-
-  if (toggleBtn) {
-    toggleBtn.hidden = active;
-  }
-  if (portraitBtn) {
-    portraitBtn.hidden = active;
-  }
-}
-
-function handleOrientationChange() {
-  const landscape = isLandscape();
-  if (landscape && !isFullscreen() && !userExitedFullscreen) {
-    requestFullscreen().then((success) => {
-      if (!success) {
-        pendingAutoFullscreen = true;
-      }
-    });
-  }
-  updateFullscreenUI();
-}
-
-function handleUserGesture() {
-  if (pendingAutoFullscreen && isLandscape() && !isFullscreen() && !userExitedFullscreen) {
-    pendingAutoFullscreen = false;
-    requestFullscreen();
-  }
-}
-
-function onFullscreenChange() {
-  const active = isFullscreen();
-  if (!active) {
-    userExitedFullscreen = true;
+  if (inFullscreen && inLandscape) {
+    popup.hidden = true;
+    popup.style.display = "none";
+    document.body.classList.remove("has-fullscreen-popup");
   } else {
-    userExitedFullscreen = false;
-    pendingAutoFullscreen = false;
+    // Show popup to force/guide them into fullscreen landscape
+    popup.hidden = false;
+    popup.style.display = "flex";
+    document.body.classList.add("has-fullscreen-popup");
   }
-  updateFullscreenUI();
 }
 
 export function initFullscreen() {
-  const toggleBtn = document.getElementById("fullscreen-toggle-btn");
-  const portraitBtn = document.getElementById("portrait-fullscreen-btn");
+  const actionBtn = document.getElementById("popup-fullscreen-btn");
 
-  const enterFS = (e) => {
+  const handleAction = async (e) => {
     e?.stopPropagation?.();
-    userExitedFullscreen = false;
-    pendingAutoFullscreen = false;
-    requestFullscreen();
+    await requestFullscreen();
+    // After entering fullscreen, update visibility
+    setTimeout(updatePopupVisibility, 150);
   };
 
-  toggleBtn?.addEventListener("click", enterFS);
-  portraitBtn?.addEventListener("click", enterFS);
+  actionBtn?.addEventListener("click", handleAction);
+  actionBtn?.addEventListener("touchend", handleAction);
 
   // Fullscreen change events across all vendor prefixes
   ["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange", "MSFullscreenChange"].forEach((evt) => {
-    document.addEventListener(evt, onFullscreenChange);
+    document.addEventListener(evt, updatePopupVisibility);
   });
 
-  // Orientation change listeners
+  // Orientation changes
   if (screen.orientation) {
-    screen.orientation.addEventListener("change", handleOrientationChange);
+    screen.orientation.addEventListener("change", updatePopupVisibility);
   }
-  window.addEventListener("orientationchange", handleOrientationChange);
-  window.matchMedia("(orientation: landscape)").addEventListener("change", handleOrientationChange);
-  window.addEventListener("resize", updateFullscreenUI);
+  window.addEventListener("orientationchange", updatePopupVisibility);
+  window.matchMedia("(orientation: landscape)").addEventListener("change", updatePopupVisibility);
+  window.addEventListener("resize", updatePopupVisibility);
 
-  // User gesture listener for pending auto-fullscreen on mobile
-  ["pointerdown", "touchstart"].forEach((evt) => {
-    window.addEventListener(evt, handleUserGesture, { passive: true });
-  });
-
-  updateFullscreenUI();
+  // Initial check
+  updatePopupVisibility();
 }
