@@ -18,6 +18,12 @@ export const psCards = [...document.querySelectorAll("[data-problem]")];
 
 export const problemDetail = document.getElementById("problem-detail");
 
+export const levelSelectModal = document.getElementById("level-select-modal");
+
+export const levelButtons = [
+  ...document.querySelectorAll("[data-ps-choice]"),
+];
+
 export const faqOverlay = document.getElementById("faq-overlay");
 
 export const aboutOverlay = document.getElementById("about-overlay");

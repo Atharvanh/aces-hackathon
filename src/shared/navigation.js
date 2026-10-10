@@ -7,6 +7,8 @@ import {
   notice,
   prizePage,
   problemDetail,
+  levelSelectModal,
+  levelButtons,
   psCards,
   psPage,
   screen,
@@ -22,8 +24,10 @@ import { closeAbout, openAbout } from "../sections/about/controller.js";
 import { closeFaqs, openFaqs } from "../sections/faqs/controller.js";
 import { closePrizes, openPrizes } from "../sections/prize-pool/controller.js";
 import {
+  closeLevelSelect,
   closeProblemDetail,
   closeProblems,
+  openLevelSelect,
   openProblemDetail,
   openProblems,
 } from "../sections/problem-statements/controller.js";
@@ -158,12 +162,32 @@ export function action(name) {
     closeProblems();
     return;
   }
+  if (name === "close-level-select") {
+    closeLevelSelect();
+    return;
+  }
+  if (!levelSelectModal.hidden) {
+    if (name === "home" || name === "back") {
+      closeLevelSelect();
+      return;
+    }
+    if (name === "next" || name === "prev") {
+      state.activeChoice = state.activeChoice === 0 ? 1 : 0;
+      levelButtons[state.activeChoice]?.focus({ preventScroll: true });
+      return;
+    }
+    if (name === "select") {
+      openProblemDetail(state.activeChoice);
+      return;
+    }
+    return;
+  }
   if (!psPage.hidden && (name === "home" || name === "back")) {
     closeProblems();
     return;
   }
   if (!psPage.hidden && name === "select") {
-    openProblemDetail(state.activeProblem);
+    openLevelSelect(state.activeProblem);
     return;
   }
   if (!psPage.hidden && (name === "next" || name === "prev")) {

@@ -3,6 +3,8 @@ export const state = {
   isHomeVideoPlaying: false,
   selected: 0,
   activeProblem: 0,
+  activeDomain: 0,
+  activeChoice: 0,
   creditsAnimation: null,
   fadeTimer: null,
   duckTimer: null,

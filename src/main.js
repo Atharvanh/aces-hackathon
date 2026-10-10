@@ -18,6 +18,8 @@ import {
   buttons,
   creditsPanel,
   faqOverlay,
+  levelButtons,
+  levelSelectModal,
   problemDetail,
   psCards,
   psPage,
@@ -25,8 +27,10 @@ import {
 import { startCreditsRoll } from "./sections/credits/controller.js";
 import { action, choose } from "./shared/navigation.js";
 import {
+  closeLevelSelect,
   closeProblemDetail,
   closeProblems,
+  openLevelSelect,
   openProblemDetail,
 } from "./sections/problem-statements/controller.js";
 import { closeFaqs } from "./sections/faqs/controller.js";
@@ -108,6 +112,25 @@ document.addEventListener("keydown", (event) => {
     }
     return;
   }
+  if (!levelSelectModal.hidden) {
+    if (event.key === "Escape" || event.key === "Home") {
+      event.preventDefault();
+      closeLevelSelect();
+      if (event.key === "Home") closeProblems();
+    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+      event.preventDefault();
+      state.activeChoice = 0;
+      levelButtons[0]?.focus({ preventScroll: true });
+    } else if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+      event.preventDefault();
+      state.activeChoice = 1;
+      levelButtons[1]?.focus({ preventScroll: true });
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      openProblemDetail(state.activeChoice);
+    }
+    return;
+  }
   if (!faqOverlay.hidden) {
     if (event.key === "Escape" || event.key === "Home") {
       event.preventDefault();
@@ -168,7 +191,13 @@ psCards.forEach((card) =>
     psCards.forEach((other) =>
       other.setAttribute("aria-pressed", String(other === card)),
     );
-    openProblemDetail(Number(card.dataset.problem));
+    openLevelSelect(Number(card.dataset.problem));
+  }),
+);
+
+levelButtons.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    openProblemDetail(Number(btn.dataset.psChoice));
   }),
 );
 
