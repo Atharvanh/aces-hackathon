@@ -1,5 +1,6 @@
 // Mutable state shared by section controllers and console controls.
 export const state = {
+  isPreloaderActive: false,
   isHomeVideoPlaying: false,
   selected: 0,
   activeProblem: 0,

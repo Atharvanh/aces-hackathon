@@ -1,0 +1,33 @@
+<section
+  class="aces-preloader"
+  id="aces-preloader"
+  aria-label="Loading ACES"
+  hidden
+>
+  <div class="preloader-content">
+    <h1 class="preloader-title">ACES</h1>
+    <div class="preloader-track">
+      <img
+        class="preloader-runner"
+        src="/src/sections/preloader/assets/runner.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <div
+        class="preloader-bar"
+        role="progressbar"
+        aria-label="Loading website"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+      >
+        <div class="preloader-fill"></div>
+        <span class="preloader-percentage" aria-hidden="true">0%</span>
+      </div>
+    </div>
+    <p class="preloader-caption" role="status">Getting the crew ready...</p>
+  </div>
+  <button class="preloader-skip" type="button">
+    Skip intro <span aria-hidden="true">↗</span>
+  </button>
+</section>

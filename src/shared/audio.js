@@ -56,6 +56,7 @@ export function toggleMute() {
 
 export function isSiteActive() {
   return (
+    !state.isPreloaderActive &&
     !screen.classList.contains("sleeping") &&
     document.visibilityState !== "hidden"
   );

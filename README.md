@@ -26,6 +26,7 @@ Each website section has its own folder inside `src/sections/`:
 - `faqs/`: questions and answers, plus FAQ navigation.
 - `about/`: event information, venue map, and About navigation.
 - `credits/`: team names, credit styling, and scrolling playback.
+- `preloader/`: ACES loading screen, progress bar, and supplied animated runner in `assets/runner.svg`. Intro duration and maximum wait are in `controller.js`.
 
 Start with a section's `index.html` to edit its content, `styles.css` to edit its appearance, and `controller.js` to edit its behavior. Problem Statements also has `detail.html` and `detail.css`; Home has `video.css`.
 
