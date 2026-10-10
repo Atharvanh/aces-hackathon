@@ -15,6 +15,40 @@
   <span>Enable auto-rotate if your screen stays upright.</span>
 </section>
 
+<!-- Fullscreen & Landscape Enforcement Popup for Mobile & Tablet -->
+<div
+  id="fullscreen-popup"
+  class="fullscreen-popup-overlay"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="popup-title"
+>
+  <div class="fullscreen-popup-card">
+    <div class="popup-glow" aria-hidden="true"></div>
+    <div class="popup-icon-wrap" aria-hidden="true">
+      <svg class="popup-rotate-svg" viewBox="0 0 48 48">
+        <rect x="10" y="6" width="28" height="36" rx="5" class="svg-device" />
+        <path d="M20 11h8M22 36h4" class="svg-details" />
+        <path d="M4 24c0-8.8 6.2-16 14.5-17.6M44 24c0 8.8-6.2 16-14.5 17.6" class="svg-arrows" />
+        <polygon points="19,3 21,7 17,8" class="svg-arrowhead" />
+        <polygon points="29,45 27,41 31,40" class="svg-arrowhead" />
+      </svg>
+    </div>
+    <span class="popup-badge">CONSOLE ACCESS</span>
+    <h2 id="popup-title" class="popup-title">GO FULLSCREEN</h2>
+    <p class="popup-desc">
+      This handheld console requires <strong>Landscape Fullscreen</strong> mode for proper display and controls.
+    </p>
+    <button id="popup-fullscreen-btn" class="popup-action-btn" type="button">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+      </svg>
+      <span>ENTER FULLSCREEN & ROTATE</span>
+    </button>
+  </div>
+</div>
+
 <main>
   <div class="console-wrap">
     <div class="console" aria-label="Interactive handheld console">
