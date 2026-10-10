@@ -1,0 +1,12 @@
+/* Import order preserves the existing visual cascade. */
+@import "../shared/console/styles.css";
+@import "../sections/home/styles.css";
+@import "../sections/problem-statements/styles.css";
+@import "../shared/tablet/styles.css";
+@import "../sections/credits/styles.css";
+@import "../sections/problem-statements/detail.css";
+@import "../shared/console/accessibility.css";
+@import "../sections/prize-pool/styles.css";
+@import "../sections/home/video.css";
+@import "../sections/about/styles.css";
+@import "../sections/faqs/styles.css";

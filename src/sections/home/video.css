@@ -1,0 +1,52 @@
+/* Home Section Interactive Video */
+.home-hackseries-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  z-index: 2;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.home-hackseries-video.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.home-video-close {
+  position: absolute;
+  top: clamp(8px, 1.5vh, 16px);
+  right: clamp(8px, 1.5vw, 16px);
+  z-index: 4;
+  width: clamp(28px, 3.2vw, 36px);
+  height: clamp(28px, 3.2vw, 36px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(14, 22, 26, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.home-video-close[hidden] {
+  display: none !important;
+}
+
+.home-video-close:hover {
+  background: rgba(43, 90, 85, 0.95);
+  border-color: #55f1db;
+  color: #55f1db;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(85, 241, 219, 0.4);
+}

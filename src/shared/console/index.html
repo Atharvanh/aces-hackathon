@@ -1,0 +1,238 @@
+<section
+  class="orientation-notice"
+  role="status"
+  aria-labelledby="rotate-title"
+>
+  <svg class="rotate-phone" viewBox="0 0 120 120" aria-hidden="true">
+    <rect x="37" y="20" width="46" height="80" rx="9" />
+    <path
+      d="M52 29h16M55 90h10M20 58a42 42 0 0 1 72-29M91 15l2 16-16-2M100 62a42 42 0 0 1-72 29M29 105l-2-16 16 2"
+    />
+  </svg>
+  <p class="rotate-brand">HACKSERIES</p>
+  <h1 id="rotate-title">Rotate your phone, crewmate!</h1>
+  <p>Turn your screen sideways to enter the console.</p>
+  <span>Enable auto-rotate if your screen stays upright.</span>
+</section>
+
+<main>
+  <div class="console-wrap">
+    <div class="console" aria-label="Interactive handheld console">
+      <button
+        class="shoulder left-shoulder"
+        data-action="prev"
+        aria-label="Previous destination"
+      >
+        L</button
+      ><button
+        class="shoulder right-shoulder"
+        data-action="next"
+        aria-label="Next destination"
+      >
+        R
+      </button>
+      <div class="controller left">
+        <button
+          class="utility minus"
+          data-action="sleep"
+          aria-label="Toggle screen power"
+        >
+          −</button
+        ><button
+          class="stick stick-left"
+          data-action="select"
+          aria-label="Select highlighted item"
+          title="Select highlighted item"
+        >
+          <span></span>
+        </button>
+        <div class="dpad">
+          <button class="up" data-action="prev" aria-label="Navigate up">
+            ▴</button
+          ><button
+            class="left-key"
+            data-action="back"
+            aria-label="Go back"
+            title="Go back"
+          >
+            ◂</button
+          ><button
+            class="right-key"
+            data-action="select"
+            aria-label="Select highlighted item"
+            title="Select highlighted item"
+          >
+            ▸</button
+          ><button class="down" data-action="next" aria-label="Navigate down">
+            ▾
+          </button>
+        </div>
+        <button
+          class="capture"
+          id="mute-button"
+          data-action="mute"
+          aria-label="Mute all audio"
+          title="Mute / Unmute Audio (M)"
+          aria-pressed="false"
+        >
+          <span
+            ><svg
+              class="sound-icon icon-on"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <polygon
+                points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"
+                fill="currentColor"
+              ></polygon>
+              <path
+                d="M15.54 8.46a5 5 0 0 1 0 7.07"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M19.07 4.93a10 10 0 0 1 0 14.14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path></svg
+            ><svg
+              class="sound-icon icon-off"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <polygon
+                points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"
+                fill="currentColor"
+              ></polygon>
+              <line
+                x1="23"
+                y1="9"
+                x2="17"
+                y2="15"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></line>
+              <line
+                x1="17"
+                y1="9"
+                x2="23"
+                y2="15"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></line></svg
+          ></span>
+        </button>
+        <div class="rail-lights"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="body">
+        <div class="glass">
+          <div class="screen" id="screen">
+            <!-- include:src/sections/home/index.html -->
+            <!-- include:src/sections/prize-pool/index.html -->
+            <!-- include:src/sections/problem-statements/index.html -->
+            <!-- include:src/sections/problem-statements/detail.html -->
+            <!-- include:src/sections/faqs/index.html -->
+            <!-- include:src/sections/about/index.html -->
+            <div class="control-guide" id="guide" hidden>
+              <strong>Console controls</strong>
+              <p>
+                Use Up and Down to highlight menu items or scroll a page. Press
+                the right D-pad button, left joystick, or Enter to select. The
+                left D-pad button goes back. Home or Escape returns to Home. The
+                square button (or M key) mutes/unmutes audio. The right-hand
+                buttons are reserved for socials.
+              </p>
+              <button data-action="help">Got it</button>
+            </div>
+            <div class="sleep-overlay">
+              <button data-action="sleep">⏻<span>Press to wake</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="bezel-footer">
+          <div class="speaker"></div>
+          <span>CREW / CONSOLE</span>
+          <div class="speaker"></div>
+        </div>
+      </div>
+      <div class="controller right">
+        <button
+          id="help-button"
+          class="utility plus"
+          data-action="help"
+          aria-label="Show controls"
+        >
+          +
+        </button>
+        <div class="abxy" aria-label="ACES social links">
+          <button
+            class="x"
+            data-social="Instagram"
+            data-url="https://www.instagram.com/aces.dit/"
+            aria-label="ACES Instagram"
+            title="ACES Instagram"
+          >
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none" />
+            </svg></button
+          ><button
+            class="y"
+            data-social="LinkedIn"
+            data-url="https://www.linkedin.com/company/acesdit"
+            aria-label="ACES LinkedIn"
+            title="ACES LinkedIn"
+          >
+            <svg viewBox="0 0 24 24">
+              <circle cx="5" cy="5" r="2" fill="currentColor" stroke="none" />
+              <path
+                d="M3 9h4v12H3zM11 9h4v2c1-3 7-3 7 2v8h-4v-7c0-3-3-3-3 0v7h-4z"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg></button
+          ><button
+            class="a"
+            data-social="GitHub"
+            data-url="https://github.com/acesdit"
+            aria-label="ACES GitHub"
+            title="ACES GitHub"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M8 20v-3c-4 1-4-2-5-2m13 5v-4c0-1-.4-2-1-2 4-.5 6-2 6-5 0-2-1-3-2-4 .2-1 0-2-.4-3-2 0-3 1-4 2a14 14 0 0 0-6 0C7 3 6 2 4 2c-.5 1-.6 2-.4 3C2 6 2 7 2 9c0 3 2 4.5 6 5-.6.5-1 1-1 2v4"
+              />
+            </svg></button
+          ><button
+            class="b"
+            data-social="Website"
+            data-url="https://aces-website-gray.vercel.app/"
+            aria-label="ACES Website"
+            title="ACES Website"
+          >
+            <img
+              src="assets/aces-button.png"
+              alt="ACES Website"
+              class="aces-btn-img"
+            />
+          </button>
+        </div>
+        <button
+          class="stick stick-right"
+          data-action="next"
+          aria-label="Right joystick, next destination"
+        >
+          <span></span></button
+        ><button class="home" data-action="home" aria-label="Home">⌂</button>
+        <div class="controller-mark">C / 01</div>
+      </div>
+    </div>
+  </div>
+</main>

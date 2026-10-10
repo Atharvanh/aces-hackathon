@@ -1,0 +1,189 @@
+/* Individual mission briefs stay within the console display. */
+.problem-detail {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  background: #020605;
+  color: #eff9f5;
+  overflow: hidden;
+}
+
+.problem-detail[hidden] {
+  display: none;
+}
+
+.problem-detail-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+  gap: clamp(12px, 2vw, 30px);
+  padding: clamp(12px, 2vh, 24px) clamp(14px, 2vw, 30px)
+    clamp(16px, 2.5vh, 30px);
+  background-image:
+    radial-gradient(2px 2px at 18% 28%, #d9fff9aa 95%, transparent),
+    radial-gradient(1px 1px at 73% 65%, #fff9 95%, transparent),
+    radial-gradient(2px 2px at 49% 87%, #c8f0e777 95%, transparent);
+  background-size:
+    173px 191px,
+    137px 157px,
+    251px 227px;
+}
+
+.problem-copy-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.problem-copy-column h2 {
+  font:
+    400 clamp(27px, 4.2vh, 52px)/1.1 Joffrey,
+    sans-serif;
+  letter-spacing: 1px;
+  margin: 0 0 12px;
+  color: #f2f7f5;
+  text-align: left;
+}
+
+.problem-description {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(18px, 2.7vw, 38px);
+  border: clamp(7px, 1vw, 13px) solid #608e90;
+  border-radius: clamp(24px, 3.5vw, 48px);
+  background: linear-gradient(125deg, #a2c4c5, #84adae);
+  box-shadow:
+    inset 0 0 0 3px #b3d0cb55,
+    0 0 0 3px #193737,
+    0 6px 0 #172a29;
+  color: #142c2d;
+  scrollbar-color: #edf9fa #405c5d;
+  scrollbar-width: auto;
+  font:
+    400 clamp(14px, 1.2vw, 19px)/1.65 "DM Sans",
+    sans-serif;
+}
+
+.problem-description::-webkit-scrollbar {
+  width: 16px;
+}
+
+.problem-description::-webkit-scrollbar-track {
+  background: #405c5d;
+  border-radius: 12px;
+}
+
+.problem-description::-webkit-scrollbar-thumb {
+  background: #e7f4f5;
+  border: 3px solid #92abad;
+  border-radius: 12px;
+}
+
+.problem-description:focus-visible {
+  outline: 3px solid #e5fff5;
+  outline-offset: 3px;
+}
+
+.problem-sample {
+  display: inline-block;
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #294a4b;
+  margin-bottom: 12px;
+}
+
+.problem-description h3 {
+  font:
+    400 clamp(28px, 3vw, 46px)/1.1 Joffrey,
+    sans-serif;
+  margin: 0 0 18px;
+  color: #102c2d;
+  letter-spacing: 0.6px;
+}
+
+.problem-description h4 {
+  font:
+    700 1em/1.3 "DM Sans",
+    sans-serif;
+  margin: 24px 0 8px;
+  color: #143436;
+}
+
+.problem-description p {
+  margin: 0 0 14px;
+}
+
+.problem-description ul {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.problem-description li {
+  margin: 7px 0;
+}
+
+.problem-character {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(ellipse at center, #4c81716b, transparent 69%);
+}
+
+.problem-character img {
+  display: block;
+  width: 100%;
+  max-height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 16px #0007);
+}
+
+.problem-character span {
+  font:
+    400 clamp(23px, 3vh, 38px)/1.2 Joffrey,
+    sans-serif;
+  letter-spacing: 1px;
+  color: #c9ded6;
+  margin-top: 12px;
+}
+
+@media (max-width: 560px) {
+  .problem-detail-body {
+    grid-template-columns: minmax(0, 1fr) minmax(55px, 0.32fr);
+    gap: 8px;
+    padding: 12px 9px 18px;
+  }
+
+  .problem-copy-column h2 {
+    font-size: 25px;
+  }
+
+  .problem-description {
+    padding: 15px 12px;
+    border-width: 6px;
+    border-radius: 23px;
+    font-size: 13px;
+  }
+
+  .problem-description h3 {
+    font-size: 27px;
+  }
+
+  .problem-character span {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .problem-character img {
+    width: 135%;
+    max-width: none;
+  }
+}

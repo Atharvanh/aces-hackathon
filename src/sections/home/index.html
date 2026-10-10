@@ -1,0 +1,69 @@
+<div class="game-topbar">
+  <span class="profile-mark" aria-hidden="true"
+    ><img
+      src="assets/pheonix.svg"
+      alt="Phoenix"
+      class="profile-phoenix" /></span
+  ><i class="online-light" aria-label="Online"></i
+  ><span class="event-name">HACKATHON 3.0</span
+  ><button class="register" data-action="register">Register Now</button>
+</div>
+<div class="game-layout">
+  <section class="menu-column" aria-label="Main menu">
+    <h1 class="game-title">AMONG US</h1>
+    <div class="menu-frame">
+      <nav class="game-menu" aria-label="Main destinations">
+        <button class="menu-button" data-page="0" aria-current="page">
+          Home</button
+        ><button class="menu-button" data-page="1">Problem Statement</button
+        ><button class="menu-button" data-page="2">Prize Pool</button
+        ><button class="menu-button" data-page="3">FAQs</button
+        ><button class="menu-button" data-page="4">About</button>
+      </nav>
+      <div class="secondary-menu">
+        <button data-action="credits">Credits</button
+        ><button data-action="quit">Quit</button>
+      </div>
+    </div>
+  </section>
+  <section class="space-frame" id="space-frame" aria-label="Floating crewmates">
+    <img
+      class="space-animation"
+      id="space-animation"
+      src="assets/amongus2.gif"
+      alt="Colorful Among Us crewmates floating through space"
+    />
+    <video
+      id="home-hackseries-video"
+      class="home-hackseries-video"
+      src="assets/ToFindYourDreamsComeTrue.mp4"
+      playsinline
+      webkit-playsinline
+      preload="auto"
+      hidden
+    ></video>
+    <button
+      id="close-home-video"
+      class="home-video-close"
+      aria-label="Close video and return to idle animation"
+      hidden
+      title="Close Video (Esc)"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        stroke="currentColor"
+        stroke-width="2.5"
+        fill="none"
+      >
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <!-- include:src/sections/credits/index.html -->
+    <div id="notice" class="notice" role="status" hidden>
+      <p id="notice-text"></p>
+      <button data-action="dismiss">Back</button>
+    </div>
+  </section>
+</div>
