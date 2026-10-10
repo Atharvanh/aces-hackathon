@@ -1,69 +1,100 @@
-/* Prize pool section displaying the new artwork inside the console */
+/* Room artwork, live type and the close control scale independently. */
 .prize-page {
   position: absolute;
   inset: 0;
   z-index: 5;
   isolation: isolate;
-  overflow: hidden;
-  background: #111a1e url("../../../assets/prize-pool.jpg") center/100% 100% no-repeat;
-  color: #fff6d9;
   container-type: size;
+  overflow: hidden;
+  color: #fff8e4;
+  background: #14212b;
+  border: 5px solid #52656b;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 3px #11191d, inset 0 0 25px #000;
 }
-
-.prize-page[hidden] {
-  display: none;
-}
-
-.prize-banner-img {
+.prize-page[hidden] { display: none; }
+.prize-scene {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
-  display: block;
-  user-select: none;
+  object-fit: contain;
+}
+.prize-room-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#0812199c, transparent 29%, transparent 75%, #071017bd);
   pointer-events: none;
+  box-shadow: inset 0 0 0 3px #17272c, inset 0 0 35px #0008;
 }
-
-/* Interactive top-left cancel button centered exactly on the mounting plate */
+.prize-header {
+  position: absolute;
+  top: calc(clamp(38px, 9cqh, 62px) + 2cqh);
+  inset-inline: 0;
+  text-align: center;
+}
+.prize-topbar {
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(38px, 9cqh, 62px);
+  display: flex;
+  align-items: center;
+  padding-inline: 1.5cqw;
+  border-bottom: 3px solid #253835;
+  background:
+    linear-gradient(25deg, transparent 42%, #e7f1ed38 45%, transparent 49%),
+    linear-gradient(100deg, #c7dad7, #b4caca);
+  box-shadow: inset 0 1px 0 #eff9f4a6, 0 2px 4px #0007;
+  z-index: 2;
+}
 .prize-page .prize-close {
-  position: absolute;
-  left: 6.7%;
-  top: 7.8%;
-  transform: translate(-50%, -50%);
-  height: clamp(34px, 8.4cqh, 56px);
-  width: auto;
+  position: relative;
+  inset: auto;
+  width: clamp(29px, 7cqh, 48px);
+  height: auto;
   aspect-ratio: 1;
-  z-index: 10;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    transform 0.15s;
 }
-
-.prize-page .prize-close:hover {
-  background: #fff;
-  transform: translate(-50%, -50%) scale(1.06);
+.prize-eyebrow {
+  margin: 0 12cqw 1cqh;
+  font: 400 clamp(11px, min(3cqw, 4cqh), 25px)/1.2 Joffrey, sans-serif;
+  letter-spacing: .07em;
+  text-shadow: 0 2px 3px #000;
 }
-
-.prize-page .prize-close:active {
-  transform: translate(-50%, -50%) scale(0.96);
+.prize-header h2 {
+  margin: 0;
+  font: 400 clamp(28px, min(9cqw, 12cqh), 84px)/1 Joffrey, sans-serif;
+  letter-spacing: .035em;
+  color: #fffbea;
+  text-shadow: 3px 3px 0 #10181e, -1px -1px 0 #10181e, 0 4px 12px #000;
 }
-
-.prize-page .prize-close:focus-visible {
-  outline: 3px solid #ffffff;
-  outline-offset: 3px;
-}
-
-/* Screen reader only content */
-.prize-page .sr-only {
+.prize-reward {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  bottom: 3cqh;
+  inset-inline: 3cqw;
+  text-align: center;
+}
+.prize-amount {
+  margin: 0;
+  color: #ffdf74;
+  font: 700 clamp(32px, min(10cqw, 13cqh), 100px)/1.05 "Space Grotesk", sans-serif;
+  letter-spacing: -.055em;
+  -webkit-text-stroke: 1px #765024;
+  text-shadow: 0 3px 0 #684219, 0 5px 0 #131b21, 0 0 22px #eaa12f45;
+}
+.prize-amount span { font-size: .8em; margin-right: .08em; }
+.prize-tagline {
+  display: inline-block;
+  margin: 1.5cqh 0 0;
+  padding: 1cqh 3cqw;
+  border: 2px solid #17232a;
+  border-radius: 5px;
+  background: linear-gradient(#495d64, #2c3a41);
+  box-shadow: inset 0 1px 0 #8c9a9d, 0 2px 5px #0008;
+  font: 400 clamp(9px, min(2cqw, 3cqh), 17px)/1.3 "DM Sans", sans-serif;
+  color: #e7ebe5;
+}
+.prize-tagline strong { color: #ffe6a0; font-weight: 600; }
+@container (max-aspect-ratio: 1/1) {
+  .prize-reward { bottom: 6cqh; }
+  .prize-tagline strong { display: block; }
 }
